@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.Service.StudentService;
+import ru.gpsbox.test.persistance.StudentsRepository;
 
 import java.util.Collection;
 
@@ -14,10 +15,17 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private StudentsRepository repository;
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Student> getAllStudents() {
         return studentService.getAllStudents();
+    }
+
+    @RequestMapping(value = "/mongo", method = RequestMethod.GET)
+    public Collection<Student> findAll() {
+        return repository.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
