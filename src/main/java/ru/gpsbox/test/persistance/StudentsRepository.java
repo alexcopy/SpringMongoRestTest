@@ -1,20 +1,22 @@
 package ru.gpsbox.test.persistance;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.Entity.Student;
 
 import java.util.List;
-import java.util.Map;
+
 
 
 @Repository
-public interface StudentsRepository extends MongoRepository <Student, String> {
-      List<Student> findStudentById(int id);
-      void deleteStudentById(int id);
+public interface StudentsRepository extends MongoRepository<Student, String> {
+    List<Student> findStudentByKeySeq(int KeySeq);
 
+    void deleteStudentByKeySeq(int KeySeq);
+
+    void deleteStudentByName(String name);
+
+    List<Student> findStudentByName(String name);
 //      void saveStudent(Student student) ;
 
 

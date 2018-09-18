@@ -1,17 +1,18 @@
 package ru.gpsbox.test.Entity;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "student")
+@Document(collection = "keySeq")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Student {
+public class KeySeq {
     @Id
-    private  String _id;
-    private  int keySeq;
-    private  String name;
-    private  String course;
+    private String id;
+    private int seq;
 }

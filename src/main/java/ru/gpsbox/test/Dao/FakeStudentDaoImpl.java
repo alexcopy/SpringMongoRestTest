@@ -22,36 +22,35 @@ public class FakeStudentDaoImpl implements StudentDao {
     static {
         students = new HashMap<Integer, Student>() {
             {
-                put(1, new Student(1, "Vasiliy", "Computer"));
-                put(2, new Student(2, "Petrovich", "Phisics"));
-                put(3, new Student(3, "Kolyan", "Hernya"));
-                put(4, new Student(4, "Oleg", "Marketing"));
+
             }
         };
     }
+
+
     @Override
     public Collection<Student> getAllStudents() {
         return this.students.values();
     }
     @Override
-    public Student getStudenById(int id) {
-        return this.students.get(id);
+    public Student getStudenById(int KeySeq) {
+        return this.students.get(KeySeq);
     }
     @Override
-    public void removeStudentById(int id) {
-        this.students.remove(id);
+    public void removeStudentById(int KeySeq) {
+        this.students.remove(KeySeq);
     }
     @Override
     public void updateStudent(Student student) {
-        Student st = students.get(student.getId());
+        Student st = students.get(student.getKeySeq());
         st.setCourse(student.getCourse());
         st.setName(student.getName());
-        students.put(student.getId(), student);
+        students.put(student.getKeySeq(), student);
     }
 
     @Override
     public void insertStudentToDb(Student student) {
-        this.students.put(student.getId(), student);
+        this.students.put(student.getKeySeq(), student);
 
     }
 //    @PostConstruct

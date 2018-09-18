@@ -23,12 +23,12 @@ public class StudentService {
         return this.fakeStudentDaoImpl.getAllStudents();
     }
 
-    public Student getStudenById(int id) {
-        return fakeStudentDaoImpl.getStudenById(id);
+    public Student getStudenById(int KeySeq) {
+        return fakeStudentDaoImpl.getStudenById(KeySeq);
     }
 
-    public void removeStudentById(int id) {
-        this.fakeStudentDaoImpl.removeStudentById(id);
+    public void removeStudentById(int KeySeq) {
+        this.fakeStudentDaoImpl.removeStudentById(KeySeq);
     }
 
     public void updateStudent(Student student) {
