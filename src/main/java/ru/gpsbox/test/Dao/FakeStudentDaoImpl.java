@@ -22,7 +22,10 @@ public class FakeStudentDaoImpl implements StudentDao {
     static {
         students = new HashMap<Integer, Student>() {
             {
-
+                put(1, new Student("1",1, "Vasiliy", "Computer"));
+                put(2, new Student("2",2, "Petrovich", "Phisics"));
+                put(3, new Student("3",3, "Kolyan", "Hernya"));
+                put(4, new Student("4",4, "Oleg", "Marketing"));
             }
         };
     }
