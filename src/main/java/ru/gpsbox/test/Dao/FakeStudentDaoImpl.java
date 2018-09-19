@@ -22,10 +22,10 @@ public class FakeStudentDaoImpl implements StudentDao {
     static {
         students = new HashMap<Integer, Student>() {
             {
-                put(1, new Student("1",1, "Vasiliy", "Computer"));
-                put(2, new Student("2",2, "Petrovich", "Phisics"));
-                put(3, new Student("3",3, "Kolyan", "Hernya"));
-                put(4, new Student("4",4, "Oleg", "Marketing"));
+                put(1, new Student("5ba0e2a86bc9709d1550cfc3",1, "Vasiliy", "Computer"));
+                put(2, new Student("5ba0d0916bc9709869110512",2, "Petrovich", "Phisics"));
+                put(3, new Student("5ba0d0846bc9709869110511",3, "Kolyan", "Hernya"));
+                put(4, new Student("5ba0d0786bc9709869110510",4, "Oleg", "Marketing"));
             }
         };
     }
@@ -36,12 +36,12 @@ public class FakeStudentDaoImpl implements StudentDao {
         return this.students.values();
     }
     @Override
-    public Student getStudenById(int KeySeq) {
-        return this.students.get(KeySeq);
+    public Student getStudentByKeySeq(int keySeq) {
+        return this.students.get(keySeq);
     }
     @Override
-    public void removeStudentById(int KeySeq) {
-        this.students.remove(KeySeq);
+    public void removeStudentByKeySeq(int keySeq) {
+        this.students.remove(keySeq);
     }
     @Override
     public void updateStudent(Student student) {

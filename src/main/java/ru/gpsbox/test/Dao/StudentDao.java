@@ -7,9 +7,9 @@ import java.util.Collection;
 public interface StudentDao {
     Collection<Student> getAllStudents();
 
-    Student getStudenById(int id);
+    Student getStudentByKeySeq(int keySeq);
 
-    void removeStudentById(int id);
+    void removeStudentByKeySeq(int keySeq);
 
     void updateStudent(Student student);
 

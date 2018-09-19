@@ -18,12 +18,12 @@ public class MongoDaoImpl implements StudentDao {
     }
 
     @Override
-    public Student getStudenById(int id) {
+    public Student getStudentByKeySeq(int keySeq) {
         return null;
     }
 
     @Override
-    public void removeStudentById(int id) {
+    public void removeStudentByKeySeq(int keySeq) {
 
     }
 
