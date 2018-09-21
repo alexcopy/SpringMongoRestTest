@@ -20,8 +20,8 @@ public interface StudentsRepository extends MongoRepository<Student, String> {
 //      void saveStudent(Student student) ;
 
 
-//    public List<Student> findAll() {
-//        return mongoTemplate.findAll(Student.class);
+//    public List<Student> getAllStudents() {
+//        return mongoTemplate.getAllStudents(Student.class);
 //    }
 
 //    public void save(Map<Integer, Student> students) {

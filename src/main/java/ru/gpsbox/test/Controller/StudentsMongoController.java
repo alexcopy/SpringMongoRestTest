@@ -27,8 +27,8 @@ public class StudentsMongoController {
     private final KeySeqRepo keySeq;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<Student> findAll() {
-        return repository.findAll();
+    public Collection<Student> getAllStudents() {
+        return  repository.findAll();
     }
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.GET)
@@ -65,7 +65,6 @@ public class StudentsMongoController {
 
     @RequestMapping(value = "/seq", method = RequestMethod.GET)
     public List<KeySeq> getSeq() {
-
         return keySeq.findAll();
     }
 }
