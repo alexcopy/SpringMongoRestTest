@@ -14,8 +14,7 @@ import java.util.Map;
 @Repository
 @Qualifier("fakeData")
 public class FakeStudentDaoImpl implements StudentDao {
-    @Autowired
-    private StudentsRepository repository;
+    private final StudentsRepository repository;
 
     private static Map<Integer, Student> students;
 
@@ -28,6 +27,10 @@ public class FakeStudentDaoImpl implements StudentDao {
                 put(4, new Student("5ba0d0786bc9709869110510",4, "Oleg", "Marketing"));
             }
         };
+    }
+    @Autowired
+    public FakeStudentDaoImpl(StudentsRepository repository ) {
+        this.repository = repository;
     }
 
 
