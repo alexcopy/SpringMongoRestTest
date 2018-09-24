@@ -28,23 +28,27 @@ public class StudentsMongoControllerIT {
     @LocalServerPort
     private int port;
 
+    private String studentTestName="TestStudentName";
+    private String studentTestId="BBCCDDDDDD";
+
     @Before
     public void setUp() throws Exception {
         this.restTemplate.postForObject(
                 "http://localhost:" + port + "/mongo",
-                new Student("BBCCDDDDDD", 100, "Knik", " Tractorets"),
+                new Student(studentTestId, 100, studentTestName, " Tractorets"),
                 String.class);
     }
 
     @After
     public void tearDown() throws Exception {
-        this.restTemplate.delete("http://localhost:" + port + "/mongo/name/Knik");
+        this.restTemplate.delete("http://localhost:" + port + "/mongo/name/"+studentTestName);
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/name/"+studentTestName, String.class)).isEqualTo("[]");
     }
 
     @Test
     public void contexLoads() throws Exception {
         assertThat(this.student).isNotNull();
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/name/Knik", String.class)).isNotNull();
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/name/"+studentTestName, String.class)).isNotNull();
     }
 
     @Test
