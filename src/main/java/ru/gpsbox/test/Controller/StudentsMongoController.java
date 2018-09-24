@@ -44,17 +44,20 @@ public class StudentsMongoController {
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.DELETE)
     public void deleteStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
         repository.deleteStudentByKeySeq(KeySeq);
+        this.keySeq.nextSeq("1", -1);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteStudentById(@PathVariable("id") String id) {
         repository.deleteStudentBy_id(id);
+        this.keySeq.nextSeq("1", -1);
     }
 
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.DELETE)
     public void deleteStudentByName(@PathVariable("name") String name) {
         repository.deleteStudentByName(name);
+        this.keySeq.nextSeq("1", -1);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -64,7 +67,7 @@ public class StudentsMongoController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertStudent(@RequestBody Student student) {
-        student.setKeySeq(this.keySeq.test("1").getSeq());
+        student.setKeySeq(this.keySeq.nextSeq("1", 1).getSeq());
         repository.insert(student);
     }
 

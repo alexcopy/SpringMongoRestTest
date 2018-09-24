@@ -17,11 +17,12 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 public class KeySeqRepo   {
     @Autowired
     private MongoTemplate mongo;
+//$inc: {score: -1}
+    public KeySeq nextSeq(String KeySeqNumber, int inc){
 
-    public KeySeq test(String KeySeqNumber){
         KeySeq counter = mongo.findAndModify(
                 query(where("id").is(KeySeqNumber)),
-                new Update().inc("seq",1),
+                new Update().inc("seq", inc),
                 options().returnNew(true).upsert(true),
                 KeySeq.class);
         return counter;

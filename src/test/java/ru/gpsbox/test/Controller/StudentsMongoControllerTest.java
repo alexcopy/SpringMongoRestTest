@@ -34,7 +34,7 @@ public class StudentsMongoControllerTest {
 
     @Before
     public void setUp() throws Exception {
-//        PropertiesConfiguration configs = new PropertiesConfiguration("src/test/java/ru/gpsbox/test/test.properties");
+//        PropertiesConfiguration configs = new PropertiesConfiguration("src/nextSeq/java/ru/gpsbox/nextSeq/nextSeq.properties");
 //        TJWSEmbeddedJaxrsServer tjws = new TJWSEmbeddedJaxrsServer();
 //        tjws.setBindAddress(configs.getString("bindaddress","localhost"));
 //        tjws.setPort(configs.getInt("bindport",8081));
@@ -49,7 +49,7 @@ public class StudentsMongoControllerTest {
     public void getStudentById() {
         //prepare
         when(studentsRepository.findAll()).thenReturn(ImmutableList.of());
-        // test
+        // nextSeq
         Collection<Student> list = studMongContr.getAllStudents();
         //validate
         verify(studentsRepository).findAll();
@@ -59,7 +59,7 @@ public class StudentsMongoControllerTest {
     public void getStudentByName() {
         //prepare
         when(studentsRepository.findStudentByName("Vova")).thenReturn(ImmutableList.of());
-        //test
+        //nextSeq
         Collection<Student> student = studMongContr.getStudentByName("Vova");
         //verify
         verify(studentsRepository).findStudentByName("Vova");
