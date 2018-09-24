@@ -70,7 +70,7 @@ public class StudentsMongoControllerTest {
         Student stud = new Student("BBCCDD", 2, "Knik", " Tractorets");
         studentsRepository.insert(stud);
         verify(studentsRepository).insert(stud);
-        studMongContr.deleteStudentById(2);
+        studMongContr.deleteStudentByKeySeq(2);
         verify(studentsRepository).deleteStudentByKeySeq(2);
     }
 

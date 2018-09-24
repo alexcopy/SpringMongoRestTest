@@ -6,8 +6,6 @@ import ru.gpsbox.test.Entity.Student;
 
 import java.util.List;
 
-
-
 @Repository
 public interface StudentsRepository extends MongoRepository<Student, String> {
     List<Student> findStudentByKeySeq(int KeySeq);
@@ -17,6 +15,8 @@ public interface StudentsRepository extends MongoRepository<Student, String> {
     void deleteStudentByName(String name);
 
     List<Student> findStudentByName(String name);
+
+    void deleteStudentBy_id(String id);
 //      void saveStudent(Student student) ;
 
 

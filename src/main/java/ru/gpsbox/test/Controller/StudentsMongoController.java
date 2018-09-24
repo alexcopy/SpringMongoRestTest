@@ -42,8 +42,13 @@ public class StudentsMongoController {
     }
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.DELETE)
-    public void deleteStudentById(@PathVariable("KeySeq") int KeySeq) {
+    public void deleteStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
         repository.deleteStudentByKeySeq(KeySeq);
+    }
+
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
+    public void deleteStudentById(@PathVariable("id") String id) {
+        repository.deleteStudentBy_id(id);
     }
 
 
