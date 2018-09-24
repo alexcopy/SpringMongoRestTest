@@ -60,7 +60,7 @@ public class StudentsMongoController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertStudent(@RequestBody Student student) {
         student.setKeySeq(this.keySeq.test("1").getSeq());
-        repository.save(student);
+        repository.insert(student);
     }
 
     @RequestMapping(value = "/seq", method = RequestMethod.GET)
