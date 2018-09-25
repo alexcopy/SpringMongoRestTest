@@ -31,11 +31,6 @@ public class StudentsMongoController {
         return  repository.findAll();
     }
 
-    @RequestMapping(value = "/{KeySeq}", method = RequestMethod.GET)
-    public List<Student> getStudentById(@PathVariable("KeySeq") int KeySeq) {
-        return repository.findStudentByKeySeq(KeySeq);
-    }
-
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
     public List<Student> getStudentByName(@PathVariable("name") String name) {
         return repository.findStudentByName(name);
@@ -47,12 +42,21 @@ public class StudentsMongoController {
         this.keySeq.nextSeq("1", -1);
     }
 
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public List<Student> getStudentById(@PathVariable("id") String id) {
+        return repository.findStudentBy_id(id);
+    }
+
+    @RequestMapping(value = "/{KeySeq}", method = RequestMethod.GET)
+    public List<Student> getStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
+        return repository.findStudentByKeySeq(KeySeq);
+    }
+
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteStudentById(@PathVariable("id") String id) {
         repository.deleteStudentBy_id(id);
         this.keySeq.nextSeq("1", -1);
     }
-
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.DELETE)
     public void deleteStudentByName(@PathVariable("name") String name) {

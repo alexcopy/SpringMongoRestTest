@@ -12,6 +12,8 @@ public interface StudentsRepository extends MongoRepository<Student, String> {
 
     void deleteStudentByKeySeq(int KeySeq);
 
+    List<Student>  findStudentBy_id(String id);
+
     void deleteStudentByName(String name);
 
     List<Student> findStudentByName(String name);

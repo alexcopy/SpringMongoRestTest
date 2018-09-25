@@ -1,6 +1,8 @@
 package ru.gpsbox.test.Controller;
 
+import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
@@ -18,13 +20,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.Entity.Student;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static java.util.stream.Collectors.collectingAndThen;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,7 +37,7 @@ public class StudentsMongoControllerIT {
 
     @Autowired
     private StudentsMongoController studentsMongoController;
-    Student newStudent;
+    private Student newStudent;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -52,18 +54,36 @@ public class StudentsMongoControllerIT {
         insertNewStudent();
     }
 
+    @DisplayName("given object to save"
+            + " when save object using MongoDB template"
+            + " then object is saved")
+
     public void insertNewStudent() {
         this.restTemplate.postForObject(
                 "http://localhost:" + port + "/mongo",
                 this.newStudent,
                 String.class);
+        List<Student> actual = this.restTemplate.exchange("http://localhost:" + port + "/mongo/name/" + studentTestName, HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
+        }).getBody();
+        assert actual != null;
+        Student student = Iterables.tryFind(actual,
+                testStudent -> {
+                    assert testStudent != null;
+                    return studentTestName.equals(testStudent.getName());
+                }).orNull();
+        assert student != null;
+        this.newStudent = student;
     }
 
     @After
     public void tearDown() throws Exception {
-
         this.restTemplate.delete("http://localhost:" + port + "/mongo/name/" + studentTestName);
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/name/" + studentTestName, String.class)).isEqualTo("[]");
+    }
+
+    @Test
+    public void contextLoads() throws Exception {
+        assertThat(this.studentsMongoController).isNotNull();
     }
 
     @Test
@@ -74,14 +94,12 @@ public class StudentsMongoControllerIT {
         insertNewStudent();
     }
 
-
-    @DisplayName("given object to save"
-            + " when save object using MongoDB template"
-            + " then object is saved")
-
     @Test
-    public void contextLoads() throws Exception {
-        assertThat(this.studentsMongoController).isNotNull();
+    public void testDeleteStudentById() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/id/" + studentTestId, String.class)).isNotEqualTo("[]");
+        this.restTemplate.delete("http://localhost:" + port + "/mongo/id/" + studentTestId);
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/id/" + studentTestId, String.class)).isEqualTo("[]");
+        insertNewStudent();
     }
 
     @Test
@@ -93,13 +111,8 @@ public class StudentsMongoControllerIT {
         List<Student> actual = entity.getBody();
         //validate
         assert actual != null;
-        List<String> actualNames = actual.stream()
-                .map(Student::getName)
-                .collect(
-                        collectingAndThen(Collectors.toList(), ImmutableList::copyOf)
-                );
-        MatcherAssert.assertThat(actualNames, containsInAnyOrder(this.studentTestName));
         MatcherAssert.assertThat(actual.size(), is(1));
+        assertThatListHasStudentName(actual);
     }
 
     @Test
@@ -108,4 +121,38 @@ public class StudentsMongoControllerIT {
                 String.class);
         assertThat(students).contains("name");
     }
+
+    @Test
+    public void testGetStudentById() {
+        List<Student> actual = this.restTemplate.exchange("http://localhost:" + port + "/mongo/name/" + studentTestName, HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
+        }).getBody();
+        assert actual != null;
+        assertThatListHasStudentName(actual);
+    }
+
+    @Test
+    public void tesGetStudentByKeySeq() {
+
+        List<Student> actual = this.restTemplate.exchange("http://localhost:" + port + "/mongo/" + this.newStudent.getKeySeq(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
+        }).getBody();
+        assertThatListHasStudentName(actual);
+    }
+
+    @Test
+    public void testDeleteStudentByKeySeq() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/" + this.newStudent.getKeySeq(), String.class)).isNotEqualTo("[]");
+        this.restTemplate.delete("http://localhost:" + port + "/mongo/" + this.newStudent.getKeySeq());
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/mongo/" + this.newStudent.getKeySeq(), String.class)).isEqualTo("[]");
+        insertNewStudent();
+    }
+
+    public void assertThatListHasStudentName(List<Student> actual) {
+        List<String> actualNames = actual.stream()
+                .map(Student::getName)
+                .collect(
+                        collectingAndThen(Collectors.toList(), ImmutableList::copyOf)
+                );
+        MatcherAssert.assertThat(actualNames, containsInAnyOrder(this.studentTestName));
+    }
+
 }
