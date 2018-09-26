@@ -9,11 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.persistance.KeySeqRepo;
 import ru.gpsbox.test.persistance.StudentsRepository;
-//import org.apache.commons.configuration.PropertiesConfiguration;
-//import org.jboss.resteasy.plugins.server.tjws.TJWSEmbeddedJaxrsServer;
-//import org.apache.commons.configuration.PropertiesConfiguration;
-
-
 import java.util.Collection;
 
 import static org.mockito.Mockito.verify;
@@ -30,20 +25,11 @@ public class StudentsMongoControllerTest {
     @Mock
     private KeySeqRepo seqRepo;
 
-//    public  TJWSEmbeddedJaxrsServer server;
-
     @Before
     public void setUp() throws Exception {
-//        PropertiesConfiguration configs = new PropertiesConfiguration("src/nextSeq/java/ru/gpsbox/nextSeq/nextSeq.properties");
-//        TJWSEmbeddedJaxrsServer tjws = new TJWSEmbeddedJaxrsServer();
-//        tjws.setBindAddress(configs.getString("bindaddress","localhost"));
-//        tjws.setPort(configs.getInt("bindport",8081));
-//        tjws.start();
-//        tjws.stop();
         studMongContr = new StudentsMongoController(this.studentsRepository, this.seqRepo);
         studentsRepository.insert(student);
     }
-
 
     @Test
     public void getStudentById() {
