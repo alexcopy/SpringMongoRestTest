@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.Entity.Student;
 
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Qualifier("mongoData")
@@ -18,7 +19,12 @@ public class MongoDaoImpl implements StudentDao {
     }
 
     @Override
-    public Student getStudentByKeySeq(int keySeq) {
+    public List<Student> getStudentByKeySeq(int keySeq) {
+        return null;
+    }
+
+    @Override
+    public List<Student> getStudentById(String id) {
         return null;
     }
 

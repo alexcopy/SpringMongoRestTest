@@ -3,11 +3,13 @@ package ru.gpsbox.test.Dao;
 import ru.gpsbox.test.Entity.Student;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface StudentDao {
     Collection<Student> getAllStudents();
 
-    Student getStudentByKeySeq(int keySeq);
+    List<Student> getStudentByKeySeq(int keySeq);
+    List<Student> getStudentById(String id);
 
     void removeStudentByKeySeq(int keySeq);
 

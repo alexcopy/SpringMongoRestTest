@@ -8,6 +8,7 @@ import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.persistance.StudentsRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -21,13 +22,22 @@ public class StudentService {
         return this.fakeStudentDaoImpl.getAllStudents();
     }
 
-    public Student getStudenById(int KeySeq) {
+    public List<Student> getStudenById(String id) {
+        return fakeStudentDaoImpl.getStudentById(id);
+    }
+
+    public void removeStudentById(String id) {
+        this.fakeStudentDaoImpl.removeStudentById(id);
+    }
+
+    public List<Student> getStudenByKeySeq(int KeySeq) {
         return fakeStudentDaoImpl.getStudentByKeySeq(KeySeq);
     }
 
-    public void removeStudentById(int KeySeq) {
+    public void removeStudentByKeySeq(int KeySeq) {
         this.fakeStudentDaoImpl.removeStudentByKeySeq(KeySeq);
     }
+
 
     public void updateStudent(Student student) {
         this.fakeStudentDaoImpl.updateStudent(student);

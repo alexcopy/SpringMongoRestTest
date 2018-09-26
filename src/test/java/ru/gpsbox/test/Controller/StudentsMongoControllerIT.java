@@ -1,6 +1,5 @@
 package ru.gpsbox.test.Controller;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.hamcrest.MatcherAssert;

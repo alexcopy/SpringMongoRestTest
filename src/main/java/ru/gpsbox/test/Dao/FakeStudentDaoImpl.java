@@ -6,10 +6,7 @@ import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.persistance.StudentsRepository;
 
-import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Qualifier("fakeData")
@@ -39,8 +36,10 @@ public class FakeStudentDaoImpl implements StudentDao {
         return this.students.values();
     }
     @Override
-    public Student getStudentByKeySeq(int keySeq) {
-        return this.students.get(keySeq);
+    public List<Student>  getStudentByKeySeq(int keySeq) {
+        List<Student> stud = new ArrayList<>();
+        stud.add(students.get(keySeq));
+      return stud;
     }
     @Override
     public void removeStudentByKeySeq(int keySeq) {
@@ -57,6 +56,20 @@ public class FakeStudentDaoImpl implements StudentDao {
     @Override
     public void insertStudentToDb(Student student) {
         this.students.put(student.getKeySeq(), student);
+    }
+
+    public List<Student> getStudentById(String id) {
+        List<Student> stud = new ArrayList<>();
+          students.entrySet().parallelStream().forEach((entry) -> {
+            Student student = entry.getValue();
+            if (student.get_id().equals(id)){
+                stud.add(entry.getValue());
+            }
+        });
+        return stud;
+    }
+
+    public void removeStudentById(String id) {
 
     }
 //    @PostConstruct
