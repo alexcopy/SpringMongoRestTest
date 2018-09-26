@@ -1,7 +1,6 @@
 package ru.gpsbox.test.Controller;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,20 +35,17 @@ public class StudentControllerTestIT {
 
     @LocalServerPort
     private int port;
-
     private String localUrl = "http://localhost";
-
     private Student testStudent;
     private String testName = "Test_Vasiliy";
-    private String id = "AAAABBBBCCCCDDDD";
+    private String testId = "AAAABBBBCCCCDDDD";
 
     @Before
     public void setUp() throws Exception {
         localUrl = "http://localhost:" + port + "/students/";
-
-        testStudent = new Student(id, 5, testName, "Computer");
+        testStudent = new Student(testId, 5, testName, "Computer");
+        insertNewStudent();
     }
-
 
     @Test
     public void testGetAllStudents() {
@@ -58,7 +54,7 @@ public class StudentControllerTestIT {
         assertThat(students).isNotNull();
         MatcherAssert.assertThat(students.size(), greaterThan(3));
         ImmutableList<String> names = getAllStudentNames(students);
-        MatcherAssert.assertThat(names, containsInAnyOrder("Oleg", "Vasiliy", "Petrovich", "Kolyan"));
+        MatcherAssert.assertThat(names, containsInAnyOrder("Oleg", "Vasiliy", "Petrovich", "Kolyan", "Test_Vasiliy"));
     }
 
     @Test
@@ -67,28 +63,44 @@ public class StudentControllerTestIT {
         }).getBody();
         assert students != null;
         MatcherAssert.assertThat(students.size(), is(1));
-        MatcherAssert.assertThat(getAllStudentNames(students), containsInAnyOrder( "Oleg"));
+        MatcherAssert.assertThat(getAllStudentNames(students), containsInAnyOrder("Oleg"));
     }
 
     @Test
     public void getStudentByID() {
-        List<Student> students = restTemplate.exchange(localUrl + "/id/5ba0d0916bc9709869110512", HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
+        List<Student> students = restTemplate.exchange(localUrl + "/id/" + testId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
         }).getBody();
+
         assert students != null;
         MatcherAssert.assertThat(students.size(), is(1));
-        MatcherAssert.assertThat(getAllStudentNames(students), containsInAnyOrder( "Petrovich"));
+        MatcherAssert.assertThat(getAllStudentNames(students), containsInAnyOrder("Test_Vasiliy"));
     }
 
     @Test
     public void deleteStudentById() {
+        this.restTemplate.delete(localUrl + "/id/" + testId);
+        assertThat(this.restTemplate.getForObject(localUrl + "/id/" + testId, String.class)).isEqualTo("[]");
+        insertNewStudent();
     }
 
     @Test
     public void updateStudent() {
+        Student student = new Student(testId, 5, "Update_Vasilich", "Update_Computer");
+        restTemplate.put(localUrl, student);
+        List<Student> students = restTemplate.exchange(localUrl + "/id/" + testId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
+        }).getBody();
+        assert students != null;
+        MatcherAssert.assertThat(students.size(), is(1));
+        MatcherAssert.assertThat(getAllStudentNames(students), containsInAnyOrder("Update_Vasilich"));
+        deleteStudentById();
     }
 
     @Test
     public void insertStudent() {
+        this.restTemplate.delete(localUrl + "/id/" + testId);
+        assertThat(this.restTemplate.getForObject(localUrl + "/id/" + testId, String.class)).isEqualTo("[]");
+        insertNewStudent();
+        getStudentByID();
     }
 
     public ImmutableList<String> getAllStudentNames(List<Student> actual) {
@@ -99,22 +111,10 @@ public class StudentControllerTestIT {
                 );
     }
 
-    @Test
     public void insertNewStudent() {
-//        this.restTemplate.postForObject(
-//                "http://localhost:" + port ,
-//                this.testStudent,
-//                String.class);
-//
-        List<Student> actual = this.restTemplate.exchange(localUrl + "/id/" + "5ba0e2b66bc9709d1550cfc4", HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
-        }).getBody();
-//        assert actual != null;
-//        Student student = Iterables.tryFind(actual,
-//                testStudent -> {
-//                    assert testStudent != null;
-//                    return studentTestName.equals(testStudent.getName());
-//                }).orNull();
-//        assert student != null;
-//        this.newStudent = student;
+        this.restTemplate.postForObject(
+                localUrl,
+                testStudent,
+                String.class);
     }
 }

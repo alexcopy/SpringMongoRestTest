@@ -18,15 +18,16 @@ public class FakeStudentDaoImpl implements StudentDao {
     static {
         students = new HashMap<Integer, Student>() {
             {
-                put(1, new Student("5ba0e2a86bc9709d1550cfc3",1, "Vasiliy", "Computer"));
-                put(2, new Student("5ba0d0916bc9709869110512",2, "Petrovich", "Phisics"));
-                put(3, new Student("5ba0d0846bc9709869110511",3, "Kolyan", "Hernya"));
-                put(4, new Student("5ba0d0786bc9709869110510",4, "Oleg", "Marketing"));
+                put(1, new Student("5ba0e2a86bc9709d1550cfc3", 1, "Vasiliy", "Computer"));
+                put(2, new Student("5ba0d0916bc9709869110512", 2, "Petrovich", "Phisics"));
+                put(3, new Student("5ba0d0846bc9709869110511", 3, "Kolyan", "Hernya"));
+                put(4, new Student("5ba0d0786bc9709869110510", 4, "Oleg", "Marketing"));
             }
         };
     }
+
     @Autowired
-    public FakeStudentDaoImpl(StudentsRepository repository ) {
+    public FakeStudentDaoImpl(StudentsRepository repository) {
         this.repository = repository;
     }
 
@@ -35,16 +36,19 @@ public class FakeStudentDaoImpl implements StudentDao {
     public Collection<Student> getAllStudents() {
         return this.students.values();
     }
+
     @Override
-    public List<Student>  getStudentByKeySeq(int keySeq) {
+    public List<Student> getStudentByKeySeq(int keySeq) {
         List<Student> stud = new ArrayList<>();
         stud.add(students.get(keySeq));
-      return stud;
+        return stud;
     }
+
     @Override
     public void removeStudentByKeySeq(int keySeq) {
         this.students.remove(keySeq);
     }
+
     @Override
     public void updateStudent(Student student) {
         Student st = students.get(student.getKeySeq());
@@ -59,10 +63,14 @@ public class FakeStudentDaoImpl implements StudentDao {
     }
 
     public List<Student> getStudentById(String id) {
+        return findStudentsById(id);
+    }
+
+    public List<Student> findStudentsById(String id) {
         List<Student> stud = new ArrayList<>();
-          students.entrySet().parallelStream().forEach((entry) -> {
+        students.entrySet().parallelStream().forEach((entry) -> {
             Student student = entry.getValue();
-            if (student.get_id().equals(id)){
+            if (student.get_id().equals(id)) {
                 stud.add(entry.getValue());
             }
         });
@@ -70,7 +78,12 @@ public class FakeStudentDaoImpl implements StudentDao {
     }
 
     public void removeStudentById(String id) {
-
+        students.entrySet().parallelStream().forEach((entry) -> {
+            Student student = entry.getValue();
+            if (student.get_id().equals(id)) {
+                students.remove(entry.getKey());
+            }
+        });
     }
 //    @PostConstruct
 //    public void init() {
