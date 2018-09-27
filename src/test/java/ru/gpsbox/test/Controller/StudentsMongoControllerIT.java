@@ -14,10 +14,12 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.MongoRestApplication;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,13 +32,15 @@ import static org.hamcrest.Matchers.is;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = MongoRestApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 
 public class StudentsMongoControllerIT {
 
     @Autowired
     private StudentsMongoController studentsMongoController;
     private Student newStudent;
+    /* in case we need to send authentication */
+    private HttpHeaders httpHeaders = new HttpHeaders();
 
     @Autowired
     private TestRestTemplate restTemplate;
