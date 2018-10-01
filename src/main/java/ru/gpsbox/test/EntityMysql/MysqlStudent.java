@@ -20,7 +20,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class StudentsSql {
+public class MysqlStudent {
     @org.springframework.data.annotation.Id
     @Id
     private int id;
