@@ -1,4 +1,4 @@
-package ru.gpsbox.test.persistance;
+package ru.gpsbox.test.persistance.mongo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;

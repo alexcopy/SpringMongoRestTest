@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.Entity.Student;
-import ru.gpsbox.test.persistance.StudentsRepository;
+import ru.gpsbox.test.persistance.mongo.StudentsRepository;
 
 import java.util.*;
 

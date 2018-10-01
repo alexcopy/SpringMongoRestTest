@@ -3,7 +3,7 @@ package ru.gpsbox.test.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ru.gpsbox.test.Entity.KeySeq;
-import ru.gpsbox.test.persistance.KeySeqRepo;
+import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
 
 
 public class NextSequenceService {

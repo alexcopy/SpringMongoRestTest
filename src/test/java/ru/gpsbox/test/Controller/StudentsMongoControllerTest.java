@@ -6,15 +6,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.gpsbox.test.Entity.Student;
-import ru.gpsbox.test.persistance.KeySeqRepo;
-import ru.gpsbox.test.persistance.StudentsRepository;
+import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
+import ru.gpsbox.test.persistance.mongo.StudentsRepository;
 import java.util.Collection;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class StudentsMongoControllerTest {
 
     private Student student = new Student("AABBCC", 1, "Vova", " Tractor");

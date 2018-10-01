@@ -1,11 +1,13 @@
-package ru.gpsbox.test.persistance;
+package ru.gpsbox.test.persistance.mongo;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.gpsbox.test.Entity.Student;
 
 import java.util.List;
 
+@Transactional
 @Repository
 public interface StudentsRepository extends MongoRepository<Student, String> {
     List<Student> findStudentByKeySeq(int KeySeq);

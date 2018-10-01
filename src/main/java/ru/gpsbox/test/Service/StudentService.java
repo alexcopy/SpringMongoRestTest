@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.gpsbox.test.Dao.FakeStudentDaoImpl;
 import ru.gpsbox.test.Entity.Student;
-import ru.gpsbox.test.persistance.StudentsRepository;
+import ru.gpsbox.test.persistance.mongo.StudentsRepository;
 
 import java.util.Collection;
 import java.util.List;

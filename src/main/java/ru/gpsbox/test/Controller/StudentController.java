@@ -5,7 +5,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.Service.StudentService;
-import ru.gpsbox.test.persistance.StudentsRepository;
 
 import java.util.Collection;
 import java.util.List;
