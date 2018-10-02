@@ -6,17 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 
 @Entity
 @Table(name = "students")
-@Document(collection="students")
+@Document(collection = "students")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -24,9 +26,18 @@ public class MysqlStudent {
     @org.springframework.data.annotation.Id
     @Id
     private int id;
-    private int keySeq;
-    @Field
+
+    @Column(nullable = false)
     private String name;
-    @Field
-    private  String course;
+
+    @Column(nullable = false )
+    private String course;
+
+    @Column(name = "CreatedAt", nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date CreatedAt;
+
+    @Column(name = "LastModifiedAt", insertable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date LastModifiedAt;
 }
