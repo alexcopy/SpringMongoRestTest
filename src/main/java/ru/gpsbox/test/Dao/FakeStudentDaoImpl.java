@@ -87,6 +87,6 @@ public class FakeStudentDaoImpl implements StudentDao {
     }
 //    @PostConstruct
 //    public void init() {
-//        repository.save(students);
+//        repository.saveMongoStudent(students);
 //    }
 }

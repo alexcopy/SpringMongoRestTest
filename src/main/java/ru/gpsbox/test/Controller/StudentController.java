@@ -13,44 +13,48 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
 
+    private final StudentService studentService;
+
     @Autowired
-    private StudentService studentService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Student> getAllStudents() {
-        return studentService.getAllStudents();
+        return studentService.getAllFakeStudents();
     }
 
 
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public List<Student> getStudentById(@PathVariable("id") String id) {
-        return studentService.getStudenById(id);
+        return studentService.getFakeStudenById(id);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteStudentById(@PathVariable("id") String id) {
-        studentService.removeStudentById(id);
+        studentService.removeFakeStudentById(id);
     }
 
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.GET)
     public List<Student> getStudentById(@PathVariable("KeySeq") int KeySeq) {
-        return studentService.getStudenByKeySeq(KeySeq);
+        return studentService.getFakeStudentByKeySeq(KeySeq);
     }
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.DELETE)
     public void deleteStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
-        studentService.removeStudentByKeySeq(KeySeq);
+        studentService.removeFakeStudentByKeySeq(KeySeq);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateStudent(@RequestBody Student student) {
-        studentService.updateStudent(student);
+        studentService.updateFakeStudent(student);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertStudent(@RequestBody Student student) {
-        studentService.insertStudent(student);
+        studentService.insertFakeStudent(student);
     }
 }

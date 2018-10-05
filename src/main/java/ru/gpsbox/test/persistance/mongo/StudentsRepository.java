@@ -24,16 +24,16 @@ public interface StudentsRepository extends MongoRepository<Student, String> {
 //      void saveStudent(Student student) ;
 
 
-//    public List<Student> getAllStudents() {
-//        return mongoTemplate.getAllStudents(Student.class);
+//    public List<Student> getAllFakeStudents() {
+//        return mongoTemplate.getAllFakeStudents(Student.class);
 //    }
 
-//    public void save(Map<Integer, Student> students) {
+//    public void saveMongoStudent(Map<Integer, Student> students) {
 //        students.forEach((k, v) -> {
-//                    mongoTemplate.save(v);
+//                    mongoTemplate.saveMongoStudent(v);
 //                }
 //        );
-//        //  mongoTemplate.save(students);
+//        //  mongoTemplate.saveMongoStudent(students);
 //    }
 
 }

@@ -8,8 +8,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
-import ru.gpsbox.test.persistance.mongo.StudentsRepository;
+
 import java.util.Collection;
 
 import static org.mockito.Mockito.verify;
@@ -23,62 +24,62 @@ public class StudentsMongoControllerTest {
 
     StudentsMongoController studMongContr;
     @Mock
-    private StudentsRepository studentsRepository;
+    private StudentService studentService;
     @Mock
     private KeySeqRepo seqRepo;
 
     @Before
     public void setUp() throws Exception {
-        studMongContr = new StudentsMongoController(this.studentsRepository, this.seqRepo);
-        studentsRepository.insert(student);
+        studMongContr = new StudentsMongoController(this.studentService, this.seqRepo);
+        studentService.insertMongoStudent(student);
     }
 
     @Test
     public void getStudentById() {
         //prepare
-        when(studentsRepository.findAll()).thenReturn(ImmutableList.of());
+        when(studentService.findAllFromMongo()).thenReturn(ImmutableList.of());
         // nextSeq
         Collection<Student> list = studMongContr.getAllStudents();
         //validate
-        verify(studentsRepository).findAll();
+        verify(studentService).findAllFromMongo();
     }
 
     @Test
     public void getStudentByName() {
         //prepare
-        when(studentsRepository.findStudentByName("Vova")).thenReturn(ImmutableList.of());
+        when(studentService.findMongoStudentByName("Vova")).thenReturn(ImmutableList.of());
         //nextSeq
         Collection<Student> student = studMongContr.getStudentByName("Vova");
         //verify
-        verify(studentsRepository).findStudentByName("Vova");
+        verify(studentService).findMongoStudentByName("Vova");
     }
 
     @Test
     public void deleteStudentById() {
         Student stud = new Student("BBCCDD", 2, "Knik", " Tractorets");
-        studentsRepository.insert(stud);
-        verify(studentsRepository).insert(stud);
+        studentService.insertMongoStudent(stud);
+        verify(studentService).insertMongoStudent(stud);
         studMongContr.deleteStudentByKeySeq(2);
-        verify(studentsRepository).deleteStudentByKeySeq(2);
+        verify(studentService).deleteMongoStudentByKeySeq(2);
     }
 
     @Test
     public void deleteStudentByName() {
         Student stud = new Student("BBCCDD", 2, "Knik", " Tractorets");
-        studentsRepository.insert(stud);
-        verify(studentsRepository).insert(stud);
+        studentService.insertMongoStudent(stud);
+        verify(studentService).insertMongoStudent(stud);
         studMongContr.deleteStudentByName("Knik");
-        verify(studentsRepository).deleteStudentByName("Knik");
+        verify(studentService).deleteMongoStudentByName("Knik");
     }
 
     @Test
     public void updateStudent() {
         Student stud = new Student("BBCCDD", 2, "Knik", " Tractorets");
         Student studUpd = new Student("BBCCDD", 2, "Prosp", " Velosipeds");
-        studentsRepository.save(stud);
-        verify(studentsRepository).save(stud);
+        studentService.saveMongoStudent(stud);
+        verify(studentService).saveMongoStudent(stud);
         studMongContr.updateStudent(studUpd);
-        verify(studentsRepository).save(studUpd);
+        verify(studentService).saveMongoStudent(studUpd);
     }
 
 }

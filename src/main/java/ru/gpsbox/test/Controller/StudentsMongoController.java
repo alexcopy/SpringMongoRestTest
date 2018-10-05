@@ -5,8 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.Entity.KeySeq;
 import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
-import ru.gpsbox.test.persistance.mongo.StudentsRepository;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,11 +16,11 @@ import java.util.List;
 @RequestMapping("/mongo")
 public class StudentsMongoController {
 
-    private final StudentsRepository repository;
+    private final StudentService studentService;
 
     @Autowired
-    public StudentsMongoController(StudentsRepository repository, KeySeqRepo keySeq) {
-        this.repository = repository;
+    public StudentsMongoController(StudentService studentService, KeySeqRepo keySeq) {
+        this.studentService = studentService;
         this.keySeq = keySeq;
     }
 
@@ -28,51 +28,51 @@ public class StudentsMongoController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Student> getAllStudents() {
-        return  repository.findAll();
+        return  studentService.findAllFromMongo();
     }
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
     public List<Student> getStudentByName(@PathVariable("name") String name) {
-        return repository.findStudentByName(name);
+        return studentService.findMongoStudentByName(name);
     }
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.DELETE)
     public void deleteStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
-        repository.deleteStudentByKeySeq(KeySeq);
+        studentService.deleteMongoStudentByKeySeq(KeySeq);
         this.keySeq.nextSeq("1", -1);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public List<Student> getStudentById(@PathVariable("id") String id) {
-        return repository.findStudentBy_id(id);
+        return studentService.findMongoStudentById(id);
     }
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.GET)
     public List<Student> getStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
-        return repository.findStudentByKeySeq(KeySeq);
+        return studentService.findMongoStudentByKeySeq(KeySeq);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
     public void deleteStudentById(@PathVariable("id") String id) {
-        repository.deleteStudentBy_id(id);
+        studentService.deleteMongoStudentById(id);
         this.keySeq.nextSeq("1", -1);
     }
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.DELETE)
     public void deleteStudentByName(@PathVariable("name") String name) {
-        repository.deleteStudentByName(name);
+        studentService.deleteMongoStudentByName(name);
         this.keySeq.nextSeq("1", -1);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateStudent(@RequestBody Student student) {
-        repository.save(student);
+        studentService.saveMongoStudent(student);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertStudent(@RequestBody Student student) {
         student.setKeySeq(this.keySeq.nextSeq("1", 1).getSeq());
-        repository.insert(student);
+        studentService.insertMongoStudent(student);
     }
 
     @RequestMapping(value = "/seq", method = RequestMethod.GET)

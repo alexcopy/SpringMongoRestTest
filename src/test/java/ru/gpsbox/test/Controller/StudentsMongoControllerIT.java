@@ -57,8 +57,8 @@ public class StudentsMongoControllerIT {
         insertNewStudent();
     }
 
-    @DisplayName("given object to save"
-            + " when save object using MongoDB template"
+    @DisplayName("given object to saveMongoStudent"
+            + " when saveMongoStudent object using MongoDB template"
             + " then object is saved")
 
     public void insertNewStudent() {
