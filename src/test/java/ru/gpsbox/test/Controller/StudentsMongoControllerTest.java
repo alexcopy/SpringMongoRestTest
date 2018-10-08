@@ -11,8 +11,13 @@ import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.toSet;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -42,6 +47,12 @@ public class StudentsMongoControllerTest {
         Collection<Student> list = studMongContr.getAllStudents();
         //validate
         verify(studentService).findAllFromMongo();
+
+        Collection<Integer> number
+                = IntStream.range(0, 10).boxed().collect(toSet());
+        number.parallelStream().forEach(System.out::println);
+        number.forEach(System.out::println);
+
     }
 
     @Test
