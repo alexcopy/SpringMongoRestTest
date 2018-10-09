@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toSet;
@@ -47,12 +48,6 @@ public class StudentsMongoControllerTest {
         Collection<Student> list = studMongContr.getAllStudents();
         //validate
         verify(studentService).findAllFromMongo();
-
-        Collection<Integer> number
-                = IntStream.range(0, 10).boxed().collect(toSet());
-        number.parallelStream().forEach(System.out::println);
-        number.forEach(System.out::println);
-
     }
 
     @Test
@@ -93,4 +88,21 @@ public class StudentsMongoControllerTest {
         verify(studentService).saveMongoStudent(studUpd);
     }
 
+    @Test
+    public void testLambdaAndStreams() {
+        Collection<Integer> number
+                = IntStream.range(0, 10).boxed().collect(toSet());
+        number.parallelStream().forEach(System.out::println);
+        number.forEach(System.out::println);
+
+        Function<String, String> mapper1 = String::toUpperCase; //method reference
+        Function<String, Integer> mapp2 = Integer::new; //method reference
+        Function<String, String> mapper2 = x->x.toUpperCase(); // Lambda
+        Function<String, Integer> mapp1 = x->new Integer(x); //Lambda
+
+        System.out.println(mapper1.apply("Vasiliy Petrovich"));
+        System.out.println(mapper2.apply("Vasiliy Petrovich"));
+        System.out.println(mapp1.apply("22"));
+        System.out.println(mapp2.apply("22"));
+    }
 }

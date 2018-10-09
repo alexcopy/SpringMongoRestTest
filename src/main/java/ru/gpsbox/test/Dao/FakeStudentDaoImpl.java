@@ -7,6 +7,7 @@ import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.persistance.mongo.StudentsRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 @Qualifier("fakeData")
@@ -67,23 +68,12 @@ public class FakeStudentDaoImpl implements StudentDao {
     }
 
     public List<Student> findStudentsById(String id) {
-        List<Student> stud = new ArrayList<>();
-        students.entrySet().parallelStream().forEach((entry) -> {
-            Student student = entry.getValue();
-            if (student.get_id().equals(id)) {
-                stud.add(entry.getValue());
-            }
-        });
-        return stud;
+
+        return  students.entrySet().parallelStream().filter(st -> st.getValue().get_id().equals(id)).map(Map.Entry::getValue).collect(Collectors.toList());
     }
 
     public void removeStudentById(String id) {
-        students.entrySet().parallelStream().forEach((entry) -> {
-            Student student = entry.getValue();
-            if (student.get_id().equals(id)) {
-                students.remove(entry.getKey());
-            }
-        });
+        students = students.entrySet().parallelStream().filter(st -> !st.getValue().get_id().equals(id)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 //    @PostConstruct
 //    public void init() {
