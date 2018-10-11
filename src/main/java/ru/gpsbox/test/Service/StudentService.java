@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.gpsbox.test.Dao.FakeStudentDaoImpl;
 import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.EntityMysql.MysqlStudent;
 import ru.gpsbox.test.persistance.MysqlDAO.StudentsMysqlRepository;
 import ru.gpsbox.test.persistance.mongo.StudentsRepository;
 
@@ -88,5 +89,37 @@ public class StudentService {
 
     public void insertMongoStudent(Student student) {
         mongoRepository.insert(student);
+    }
+
+    public List<MysqlStudent> findAllSqlStudents() {
+        return mysqlRepository.findAll();
+    }
+
+    public List<MysqlStudent> findSqlStudentByNameOrderById(String name) {
+        return mysqlRepository.findByNameOrderById(name);
+    }
+
+    public MysqlStudent findFirstSqlStudentById(int id) {
+        return mysqlRepository.findFirstById(id);
+    }
+
+    public void setSqlStudentByName(MysqlStudent student) {
+        mysqlRepository.setStudentByName(student.getName(), student.getCourse());
+    }
+
+    public void saveSqlStudent(MysqlStudent student) {
+        mysqlRepository.save(student);
+    }
+
+    public void deleteSqlStudentById(int id) {
+        mysqlRepository.deleteById(id);
+    }
+
+    public void deleteSqlStudentByNameAndCourse(String name, String course) {
+        mysqlRepository.deleteByNameAndCourse(name, course);
+    }
+
+    public void deleteSqlStudentByName(String name) {
+        mysqlRepository.deleteByName(name);
     }
 }
