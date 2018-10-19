@@ -13,6 +13,7 @@ import ru.gpsbox.test.Service.Sampleservice;
 import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
 
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,6 +151,9 @@ public class StudentsMongoControllerTest {
         System.out.println("Total values Lambda is: " + totalLambdaVals);
         System.out.println("Total for Lambda Even: " + totalLambdaEvens);
 
+        // TODO Java test UTF8
+        Пиво пиво = new Пиво();
+        пиво.студентыПьютПиво();
 
     }
 
