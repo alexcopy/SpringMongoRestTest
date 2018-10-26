@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toSet;
 import static org.mockito.Mockito.verify;
@@ -155,7 +156,13 @@ public class StudentsMongoControllerTest {
         Пиво пиво = new Пиво();
         пиво.студентыПьютПиво();
 
+        System.out.println(
+                Stream.of(
+                        -5,1,2,3,4,5,-7,-9,-10
+                ).max(Math::max).get()
+        );
     }
+
 
     private boolean isPrime(int i) {
         return i > 1 && IntStream.range(2, i).noneMatch(index -> i % index == 0);

@@ -46,6 +46,18 @@ public class Schedular {
         System.out.println("Runs everyFiveMinutes RUN "+ LocalDateTime.now() + "\n");
     }
 
+
+    @Scheduled(cron = "* * 12  * * ?") // at 12
+    @Scheduled(cron = "0/3 * * * * ?") //every 3 sec
+    @Scheduled(cron = "0/10 * * * * ?") //every 10 sec
+    public void complexRun() {
+        LocalDateTime time = LocalDateTime.now();
+        System.out.println("Pick! Pick!  Pick!  - "+ time.getSecond() + "\n");
+    }
+
+
+
+
 }
 
 
