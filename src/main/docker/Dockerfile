@@ -1,13 +1,23 @@
 FROM openjdk:8-jre-alpine
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
-    JHIPSTER_SLEEP=0
+    STUDENTS_SLEEP=0 \
+    JAVA_OPTS=""
 
-# add directly the war
-ADD *.war /app.war
 
-VOLUME /tmp
-EXPOSE 8080 5701/udp
+RUN adduser -D -s /bin/sh student
+WORKDIR /home/student
+
+
+ADD entrypoint.sh entrypoint.sh
+RUN chmod 755 entrypoint.sh && chown student:student entrypoint.sh
+USER student
+
+ENTRYPOINT ["./entrypoint.sh"]
+
+EXPOSE 8080
+
+ADD *.war app.war
+
 CMD echo "The application will start in ${STUDENTS_SLEEP}s..." && \
-    sleep ${STUDENTS_SLEEP} && \
-    java -Djava.security.egd=file:/dev/./urandom -jar /app.war
+    sleep ${STUDENTS_SLEEP}

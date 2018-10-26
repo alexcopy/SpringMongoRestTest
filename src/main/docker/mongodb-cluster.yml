@@ -1,10 +1,9 @@
 version: '2'
 services:
     students-mongodb:
-        container_name: students-mongodb
-        image: mongo:3.2.10
+        image: mongo:4.0.2
         ports:
-            - "30021:27017"
+        - "27017:27017"
         command: mongos --configdb students-mongodb-config
     students-mongodb-node:
         build:
@@ -12,6 +11,6 @@ services:
             dockerfile: mongodb/MongoDB.Dockerfile
         command: mongod --replSet rs1 --noprealloc --smallfiles
     students-mongodb-config:
-        image: mongo:3.2.10
+        image: mongo:4.0.2
         container_name: students-mongodb-config
         command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db

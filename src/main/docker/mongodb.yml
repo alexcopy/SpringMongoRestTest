@@ -2,8 +2,8 @@ version: '2'
 services:
     students-mongodb:
         container_name: students-mongodb
-        image: mongo:latest
+        image: mongo:4.0.2
         ports:
-            - "30021:27017"
+            - "27017:27017"
         # volumes:
         #     - ~/volumes/students/mongodb/:/data/db/
