@@ -1,14 +1,21 @@
 version: '2'
 services:
-    students-app:
-        image: testmongospring
-        environment:
-#            - SPRING_PROFILES_ACTIVE=prod
-            - SPRING_DATASOURCE_URL=jdbc:mariadb://students-mariadb:3336/students
-            - STUDENTS_SLEEP=10 # gives time for the database to boot before the application
-        ports:
-            - 8080:8080
-    students-mariadb:
-        extends:
-            file: mariadb.yml
-            service: students-mariadb
+  students-app:
+    image: testmongospring
+    environment:
+    #            - SPRING_PROFILES_ACTIVE=prod
+    - SPRING_DATASOURCE_URL=jdbc:mariadb://students-mariadb:30022/students
+    - SPRING_DATA_MONGODB_URI=mongodb://mongodb:30021
+    - STUDENTS_SLEEP=10 # gives time for the database to boot before the application
+    ports:
+    - 8080:8080
+
+  students-mariadb:
+    extends:
+      file: mariadb.yml
+      service: students-mariadb
+
+  students-mongodb:
+    extends:
+      file: mongodb.yml
+      service: students-mongodb
