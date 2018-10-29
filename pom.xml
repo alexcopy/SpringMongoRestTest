@@ -25,7 +25,17 @@
         <java.version>1.8</java.version>
         <it.skip>false</it.skip>
         <docker-maven-plugin.version>0.4.13</docker-maven-plugin.version>
+        <!-- The liquibase version should match the one managed by
+         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
+        <liquibase.version>3.5.5</liquibase.version>
+        <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
+        <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
+        <javassist.version>3.22.0-GA</javassist.version>
+        <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -66,6 +76,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <version>2.0.5.RELEASE</version>
+            <optional>true</optional>
             <scope>runtime</scope>
         </dependency>
 
@@ -87,14 +99,6 @@
             <!--<groupId>org.springframework.boot</groupId>-->
             <!--<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>-->
         <!--</dependency>-->
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>2.0.5.RELEASE</version>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
@@ -105,7 +109,28 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+
         </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jcache</artifactId>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.mattbertolini</groupId>-->
+            <!--<artifactId>liquibase-slf4j</artifactId>-->
+            <!--<version>2.0.0</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.liquibase</groupId>-->
+            <!--<artifactId>liquibase-core</artifactId>-->
+
+        <!--</dependency>-->
 
         <!--<dependency>-->
             <!--<groupId>org.jboss.resteasy</groupId>-->
@@ -130,6 +155,11 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.jhipster</groupId>
+            <artifactId>jhipster-framework</artifactId>
+            <version>2.0.26</version>
         </dependency>
 
 
@@ -161,6 +191,45 @@
                     </resources>
                 </configuration>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.liquibase</groupId>-->
+                <!--<artifactId>liquibase-maven-plugin</artifactId>-->
+                <!--<version>${liquibase.version}</version>-->
+                <!--<configuration>-->
+                    <!--<changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>-->
+                    <!--<diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>-->
+                    <!--<driver>org.mariadb.jdbc.Driver</driver>-->
+                    <!--<url>jdbc:mariadb://localhost:3306/deleteSql</url>-->
+                    <!--<defaultSchemaName></defaultSchemaName>-->
+                    <!--<username></username>-->
+                    <!--<password></password>-->
+                    <!--<referenceUrl>hibernate:spring:com.mycompany.myapp.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>-->
+                    <!--<verbose>true</verbose>-->
+                    <!--<logging>debug</logging>-->
+                <!--</configuration>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.javassist</groupId>-->
+                        <!--<artifactId>javassist</artifactId>-->
+                        <!--<version>${javassist.version}</version>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.liquibase.ext</groupId>-->
+                        <!--<artifactId>liquibase-hibernate5</artifactId>-->
+                        <!--<version>${liquibase-hibernate5.version}</version>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.springframework.boot</groupId>-->
+                        <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+                        <!--<version>${spring-boot.version}</version>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                        <!--<groupId>javax.validation</groupId>-->
+                        <!--<artifactId>validation-api</artifactId>-->
+                        <!--<version>${validation-api.version}</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>

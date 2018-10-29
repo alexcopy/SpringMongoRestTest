@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.EntityMysql.MysqlStudent;
 
 import java.util.Date;
 import java.util.List;
-
+@Repository
 @Transactional
 public interface StudentsMysqlRepository extends JpaRepository<MysqlStudent, String> {
 
