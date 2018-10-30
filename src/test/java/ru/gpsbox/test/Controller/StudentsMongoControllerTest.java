@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.Service.Sampleservice;
 import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = MongoRestApplication.class)
 public class StudentsMongoControllerTest {
 
     private Student student = new Student("AABBCC", 1, "Vova", " Tractor");
