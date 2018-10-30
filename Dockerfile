@@ -14,7 +14,7 @@ RUN echo '{ "allow_root": true }' > /root/.bowerrc && \
 
 RUN sh -c 'touch /app.war'
 VOLUME /tmp
-EXPOSE 8080
+EXPOSE 8888
 CMD echo "The application will start in ${STUDENTS_SLEEP}s..." && \
     sleep ${STUDENTS_SLEEP} && \
     java -Djava.security.egd=file:/dev/./urandom -jar /app.war
