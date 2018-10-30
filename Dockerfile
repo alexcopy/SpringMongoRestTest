@@ -9,7 +9,6 @@ RUN
     cd /code/ && \
     ./mvnw clean package -DskipTests && \
     mv /code/target/*.war /app.war && \
-    rm -Rf /code /root/.npm/ /tmp && \
     rm -Rf /root/.m2/
 
 RUN sh -c 'touch /app.war'
