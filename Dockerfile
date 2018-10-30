@@ -5,8 +5,7 @@ ENV STUDENTS_SLEEP 0
 # add source
 ADD . /code/
 # package the application and delete all lib
-RUN
-    cd /code/ && \
+RUN echo '{ "allow_root": true }' > cd /code/ && \
     ./mvnw clean package -DskipTests && \
     mv /code/target/*.war /app.war && \
     rm -Rf /root/.m2/
