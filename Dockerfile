@@ -5,8 +5,7 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS=""
 
 # add source
-RUN adduser -D -s /bin/sh student
-WORKDIR /home/student
+
 ADD . /code/
 # package the application and delete all lib
 RUN echo '{ "allow_root": true }' > /root/.bowerrc && \
