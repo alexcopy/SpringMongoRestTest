@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     STUDENTS_SLEEP=0 \
