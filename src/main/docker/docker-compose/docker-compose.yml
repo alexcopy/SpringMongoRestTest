@@ -1,0 +1,60 @@
+version: '2'
+services:
+    students-app:
+        image: redcopy/springmongoresttest
+        container_name: students-app
+        environment:
+        - _JAVA_OPTIONS=-Xmx512m -Xms256m
+        - SPRING_PROFILES_ACTIVE=prod
+        #    - SPRING_DATASOURCE_URL=jdbc:mysql://students-mariadb:3306/students?useSSL=false
+        - SPRING_MYSQL_JDBC_URL=jdbc:mysql://students-mariadb:3306/students?useSSL=false&user=student&password=test123"
+        - SPRING_MYSQL_USER=student
+        - SPRING_MYSQL_PASS=test123
+        - HIBERNATE_DIALECT=org.hibernate.dialect.MariaDB10Dialect
+        - SPRING_DATA_MONGODB_URI=mongodb://students-mongodb:27017
+        - SPRING_DATA_MONGODB_DATABASE=students
+        - STUDENTS_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+        - 8080:8080
+    students-mariadb:
+        extends:
+            file: ../mariadb.yml
+            service: students-mariadb
+
+    students-mongodb:
+        extends:
+            file: ../mongodb.yml
+            service: students-mongodb
+
+## TODO UNCOMMENT IN CASE OF CLUSTERED DB
+#    students-mongodb-node:
+#        build:
+#            context: ../docker
+#            dockerfile: mongodb/MongoDB.Dockerfile
+#        command: mongod --replSet rs1 --noprealloc --smallfiles
+#    students-mongodb-config:
+#        image: 'mongo:4.0.2'
+#        container_name: students-mongodb-config
+#        command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
+
+# TODO Uncmment   for Prometeus stats
+
+#    prometheus:
+#        extends:
+#            file: prometheus.yml
+#            service: prometheus
+#
+#    alertmanager:
+#        extends:
+#            file: prometheus.yml
+#            service: alertmanager
+#
+#    grafana:
+#        extends:
+#            file: prometheus.yml
+#            service: grafana
+#
+#volumes:
+#    prometheus_data: {}
+#    grafana_data: {}
+
