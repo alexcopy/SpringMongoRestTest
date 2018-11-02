@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.gpsbox.test.EntityMysql.MysqlStudent;
 import ru.gpsbox.test.MongoRestApplication;
+import ru.gpsbox.test.web.rest.StudentsMySQLController;
 
 import java.util.List;
 import java.util.stream.Collectors;

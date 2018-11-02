@@ -14,6 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.MongoRestApplication;
+import ru.gpsbox.test.web.rest.StudentController;
 
 import java.util.List;
 import java.util.stream.Collectors;

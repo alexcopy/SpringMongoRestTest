@@ -1,4 +1,4 @@
-package ru.gpsbox.test.Controller;
+package ru.gpsbox.test.web.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

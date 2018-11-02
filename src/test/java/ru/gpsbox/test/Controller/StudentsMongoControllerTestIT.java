@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.Entity.Student;
 import ru.gpsbox.test.MongoRestApplication;
+import ru.gpsbox.test.web.rest.StudentsMongoController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MongoRestApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 
-public class StudentsMongoControllerIT {
+public class StudentsMongoControllerTestIT {
 
     @Autowired
     private StudentsMongoController studentsMongoController;

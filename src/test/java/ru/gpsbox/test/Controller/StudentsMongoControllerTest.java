@@ -13,10 +13,9 @@ import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.Service.Sampleservice;
 import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
+import ru.gpsbox.test.web.rest.StudentsMongoController;
+import ru.gpsbox.test.web.rest.Пиво;
 
-import java.io.PrintStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;

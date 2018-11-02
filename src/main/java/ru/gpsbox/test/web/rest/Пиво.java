@@ -1,4 +1,4 @@
-package ru.gpsbox.test.Controller;
+package ru.gpsbox.test.web.rest;
 
 public class Пиво {
     public Пиво студентыПьютПиво() {
