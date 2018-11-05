@@ -1,4 +1,4 @@
-package ru.gpsbox.test.dao;
+package ru.gpsbox.test.service.dao;
 
 import ru.gpsbox.test.domain.mongo.Student;
 
