@@ -182,9 +182,17 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${docker-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>activation</artifactId>
+                        <version>1.1.1</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <imageName>testmongospring</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
+
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
@@ -193,6 +201,26 @@
                         </resource>
                     </resources>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>testmongospring</image>
+                            <registryUrl>http://dokersto.test:5000/testmongospring</registryUrl>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <!--<plugin>-->
                 <!--<groupId>org.liquibase</groupId>-->

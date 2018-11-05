@@ -1,0 +1,9 @@
+  ${AnsiColor.GREEN}  ███████╗████████╗██╗   ██╗${AnsiColor.BLUE}██████╗ ███████╗███╗   ██╗████████╗███████╗
+  ${AnsiColor.GREEN}  ██╔════╝╚══██╔══╝██║   ██║${AnsiColor.BLUE}██╔══██╗██╔════╝████╗  ██║╚══██╔══╝██╔════╝
+  ${AnsiColor.GREEN}  ███████╗   ██║   ██║   ██║${AnsiColor.BLUE}██║  ██║█████╗  ██╔██╗ ██║   ██║   ███████╗
+  ${AnsiColor.GREEN}  ╚════██║   ██║   ██║   ██║${AnsiColor.BLUE}██║  ██║██╔══╝  ██║╚██╗██║   ██║   ╚════██║
+  ${AnsiColor.GREEN}  ███████║   ██║   ╚██████╔╝${AnsiColor.BLUE}██████╔╝███████╗██║ ╚████║   ██║   ███████║
+  ${AnsiColor.GREEN}  ╚══════╝   ╚═╝    ╚═════╝ ${AnsiColor.BLUE}╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
+
+${AnsiColor.RED}:: Students App  :: Running Spring Boot ${spring-boot.version} ::
+:: Mongo and MariaDB ::${AnsiColor.DEFAULT}
