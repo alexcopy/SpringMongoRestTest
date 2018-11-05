@@ -1,10 +1,10 @@
-package ru.gpsbox.test.Dao;
+package ru.gpsbox.test.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.domain.mongo.Student;
-import ru.gpsbox.test.persistance.mongo.StudentsRepository;
+import ru.gpsbox.test.repository.mongo.StudentsRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;

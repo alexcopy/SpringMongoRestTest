@@ -3,7 +3,7 @@ package ru.gpsbox.test.web.rest;
 
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.domain.mongo.Message;
-import ru.gpsbox.test.Service.MessageService;
+import ru.gpsbox.test.service.MessageService;
 
 import java.util.Collection;
 import java.util.List;

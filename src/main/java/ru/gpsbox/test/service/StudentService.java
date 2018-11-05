@@ -1,12 +1,12 @@
-package ru.gpsbox.test.Service;
+package ru.gpsbox.test.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.gpsbox.test.Dao.FakeStudentDaoImpl;
+import ru.gpsbox.test.dao.FakeStudentDaoImpl;
 import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.domain.mysql.MysqlStudent;
-import ru.gpsbox.test.persistance.MysqlDAO.StudentsMysqlRepository;
-import ru.gpsbox.test.persistance.mongo.StudentsRepository;
+import ru.gpsbox.test.repository.MysqlDAO.StudentsMysqlRepository;
+import ru.gpsbox.test.repository.mongo.StudentsRepository;
 
 import java.util.Collection;
 import java.util.List;

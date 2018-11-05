@@ -1,4 +1,4 @@
-package ru.gpsbox.test.Dao;
+package ru.gpsbox.test.dao;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;

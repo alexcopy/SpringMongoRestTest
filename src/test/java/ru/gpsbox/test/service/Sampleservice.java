@@ -1,4 +1,4 @@
-package ru.gpsbox.test.Service;
+package ru.gpsbox.test.service;
 
 import java.util.List;
 import java.util.function.Predicate;

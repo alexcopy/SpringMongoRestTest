@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @EnableScheduling
-@EnableMongoRepositories(basePackages = {"ru.gpsbox.test.persistance.mongo"})
+@EnableMongoRepositories(basePackages = {"ru.gpsbox.test.repository.mongo"})
 public class MongoRestApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MongoRestApplication.class);

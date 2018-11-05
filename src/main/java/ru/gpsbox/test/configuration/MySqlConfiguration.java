@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 @Configuration
 @PropertySource("classpath:mysql-config.properties")
-@EnableJpaRepositories(basePackages = "ru.gpsbox.test.persistance.MysqlDAO", entityManagerFactoryRef = "mysqlEntityManager", transactionManagerRef = "mysqlTransactionManager")
+@EnableJpaRepositories(basePackages = "ru.gpsbox.test.repository.MysqlDAO", entityManagerFactoryRef = "mysqlEntityManager", transactionManagerRef = "mysqlTransactionManager")
 public class MySqlConfiguration {
 
     @Autowired

@@ -1,4 +1,4 @@
-package ru.gpsbox.test.persistance.MysqlDAO;
+package ru.gpsbox.test.repository.MysqlDAO;
 
 import javax.transaction.Transactional;
 

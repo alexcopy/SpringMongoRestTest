@@ -3,7 +3,7 @@ package ru.gpsbox.test.web.rest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.domain.mysql.MysqlStudent;
-import ru.gpsbox.test.Service.StudentService;
+import ru.gpsbox.test.service.StudentService;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package ru.gpsbox.test.Service;
+package ru.gpsbox.test.service;
 
 import org.springframework.stereotype.Service;
 import ru.gpsbox.test.domain.mongo.Message;
-import ru.gpsbox.test.persistance.mongo.MessagesRepository;
+import ru.gpsbox.test.repository.mongo.MessagesRepository;
 
 import java.util.Collection;
 import java.util.List;

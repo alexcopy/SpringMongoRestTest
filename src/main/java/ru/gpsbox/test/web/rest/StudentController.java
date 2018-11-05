@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.domain.mongo.Student;
-import ru.gpsbox.test.Service.StudentService;
+import ru.gpsbox.test.service.StudentService;
 
 import java.util.Collection;
 import java.util.List;

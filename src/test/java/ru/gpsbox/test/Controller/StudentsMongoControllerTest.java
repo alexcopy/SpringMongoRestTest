@@ -10,9 +10,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.MongoRestApplication;
-import ru.gpsbox.test.Service.Sampleservice;
-import ru.gpsbox.test.Service.StudentService;
-import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
+import ru.gpsbox.test.service.Sampleservice;
+import ru.gpsbox.test.service.StudentService;
+import ru.gpsbox.test.repository.mongo.KeySeqRepo;
 import ru.gpsbox.test.web.rest.StudentsMongoController;
 import ru.gpsbox.test.web.rest.Пиво;
 

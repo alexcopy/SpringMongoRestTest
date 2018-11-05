@@ -5,8 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.domain.mongo.KeySeq;
 import ru.gpsbox.test.domain.mongo.Student;
-import ru.gpsbox.test.Service.StudentService;
-import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
+import ru.gpsbox.test.service.StudentService;
+import ru.gpsbox.test.repository.mongo.KeySeqRepo;
 
 import java.util.Collection;
 import java.util.List;
