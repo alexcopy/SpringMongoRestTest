@@ -3,7 +3,7 @@ package ru.gpsbox.test.web.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.Service.StudentService;
 
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package ru.gpsbox.test.Entity;
+package ru.gpsbox.test.domain.mongo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.Service.Sampleservice;
 import ru.gpsbox.test.Service.StudentService;

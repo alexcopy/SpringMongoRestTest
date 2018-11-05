@@ -8,9 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import ru.gpsbox.test.EntityMysql.MysqlStudent;
+import ru.gpsbox.test.domain.mysql.MysqlStudent;
 
-import java.util.Date;
 import java.util.List;
 @Repository
 @Transactional

@@ -1,11 +1,8 @@
 package ru.gpsbox.test.Dao;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Repository;
-import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.domain.mongo.Student;
 
 import java.util.Collection;
 import java.util.List;

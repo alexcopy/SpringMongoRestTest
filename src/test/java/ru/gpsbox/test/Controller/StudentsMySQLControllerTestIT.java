@@ -14,7 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ru.gpsbox.test.EntityMysql.MysqlStudent;
+import ru.gpsbox.test.domain.mysql.MysqlStudent;
 import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.web.rest.StudentsMySQLController;
 

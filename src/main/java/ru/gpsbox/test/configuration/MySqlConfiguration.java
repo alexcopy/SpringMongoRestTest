@@ -29,7 +29,7 @@ public class MySqlConfiguration {
     public LocalContainerEntityManagerFactoryBean mysqlEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(myMySQLDataSource());
-        em.setPackagesToScan(new String[] { "ru.gpsbox.test.EntityMysql" });
+        em.setPackagesToScan(new String[] { "ru.gpsbox.test.domain.mysql" });
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         HashMap<String, Object> properties = new HashMap<String, Object>();

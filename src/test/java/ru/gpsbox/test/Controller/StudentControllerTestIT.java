@@ -12,7 +12,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.web.rest.StudentController;
 

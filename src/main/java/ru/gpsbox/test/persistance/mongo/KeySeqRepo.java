@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import org.springframework.stereotype.Repository;
-import ru.gpsbox.test.Entity.KeySeq;
+import ru.gpsbox.test.domain.mongo.KeySeq;
 
 import java.util.List;
 

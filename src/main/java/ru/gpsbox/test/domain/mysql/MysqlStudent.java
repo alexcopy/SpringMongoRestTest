@@ -1,4 +1,4 @@
-package ru.gpsbox.test.EntityMysql;
+package ru.gpsbox.test.domain.mysql;
 
 
 import lombok.AllArgsConstructor;

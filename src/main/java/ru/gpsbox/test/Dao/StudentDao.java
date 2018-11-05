@@ -1,6 +1,6 @@
 package ru.gpsbox.test.Dao;
 
-import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.domain.mongo.Student;
 
 import java.util.Collection;
 import java.util.List;

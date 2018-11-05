@@ -3,8 +3,8 @@ package ru.gpsbox.test.web.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.gpsbox.test.Entity.KeySeq;
-import ru.gpsbox.test.Entity.Student;
+import ru.gpsbox.test.domain.mongo.KeySeq;
+import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.Service.StudentService;
 import ru.gpsbox.test.persistance.mongo.KeySeqRepo;
 
