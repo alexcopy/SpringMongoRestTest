@@ -13,7 +13,7 @@ import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.service.Sampleservice;
 import ru.gpsbox.test.service.StudentService;
 import ru.gpsbox.test.repository.mongo.KeySeqRepo;
-import ru.gpsbox.test.web.rest.StudentsMongoController;
+import ru.gpsbox.test.web.rest.StudentsMongoResource;
 import ru.gpsbox.test.web.rest.Пиво;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class StudentsMongoControllerTest {
 
     private Student student = new Student("AABBCC", 1, "Vova", " Tractor");
 
-    StudentsMongoController studMongContr;
+    StudentsMongoResource studMongContr;
     @Mock
     private StudentService studentService;
     @Mock
@@ -41,7 +41,7 @@ public class StudentsMongoControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        studMongContr = new StudentsMongoController(this.studentService, this.seqRepo);
+        studMongContr = new StudentsMongoResource(this.studentService, this.seqRepo);
         studentService.insertMongoStudent(student);
     }
 

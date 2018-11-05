@@ -9,10 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/mysql")
-public class StudentsMySQLController {
+public class StudentsMySQLResource {
     private final StudentService studentService;
 
-    public StudentsMySQLController(StudentService repository) {
+    public StudentsMySQLResource(StudentService repository) {
         this.studentService = repository;
     }
 

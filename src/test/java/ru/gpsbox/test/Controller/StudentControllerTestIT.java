@@ -14,7 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.MongoRestApplication;
-import ru.gpsbox.test.web.rest.StudentController;
+import ru.gpsbox.test.web.rest.StudentResource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.is;
 public class StudentControllerTestIT {
 
     @Autowired
-    StudentController studentController;
+    StudentResource studentController;
 
     @Autowired
     private TestRestTemplate restTemplate;

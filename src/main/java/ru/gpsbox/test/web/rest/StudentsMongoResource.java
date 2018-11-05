@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/mongo")
-public class StudentsMongoController {
+public class StudentsMongoResource {
 
     private final StudentService studentService;
 
     @Autowired
-    public StudentsMongoController(StudentService studentService, KeySeqRepo keySeq) {
+    public StudentsMongoResource(StudentService studentService, KeySeqRepo keySeq) {
         this.studentService = studentService;
         this.keySeq = keySeq;
     }

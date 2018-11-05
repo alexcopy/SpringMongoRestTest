@@ -1,7 +1,7 @@
 version: '2'
 services:
     students-app:
-        image: redcopy/springmongoresttest
+        image: redcopy/springmongoresttest:latest
         container_name: students-app
         environment:
         - _JAVA_OPTIONS=-Xmx512m -Xms256m

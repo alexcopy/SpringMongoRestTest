@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.MongoRestApplication;
-import ru.gpsbox.test.web.rest.StudentsMongoController;
+import ru.gpsbox.test.web.rest.StudentsMongoResource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StudentsMongoControllerTestIT {
 
     @Autowired
-    private StudentsMongoController studentsMongoController;
+    private StudentsMongoResource studentsMongoController;
     private Student newStudent;
     /* in case we need to send authentication */
     private HttpHeaders httpHeaders = new HttpHeaders();

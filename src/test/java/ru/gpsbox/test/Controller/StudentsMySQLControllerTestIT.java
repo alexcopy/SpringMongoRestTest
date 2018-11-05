@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.gpsbox.test.domain.mysql.MysqlStudent;
 import ru.gpsbox.test.MongoRestApplication;
-import ru.gpsbox.test.web.rest.StudentsMySQLController;
+import ru.gpsbox.test.web.rest.StudentsMySQLResource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StudentsMySQLControllerTestIT {
 
     @Autowired
-    private StudentsMySQLController controller;
+    private StudentsMySQLResource controller;
     private MysqlStudent newStudent;
     /* in case we need to send authentication */
     private HttpHeaders httpHeaders = new HttpHeaders();
