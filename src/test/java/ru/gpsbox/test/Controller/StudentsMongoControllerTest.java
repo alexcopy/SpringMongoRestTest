@@ -10,6 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.MongoRestApplication;
+import ru.gpsbox.test.service.KeySeqService;
 import ru.gpsbox.test.service.Sampleservice;
 import ru.gpsbox.test.service.StudentService;
 import ru.gpsbox.test.repository.mongo.KeySeqRepo;
@@ -37,7 +38,7 @@ public class StudentsMongoControllerTest {
     @Mock
     private StudentService studentService;
     @Mock
-    private KeySeqRepo seqRepo;
+    private KeySeqService seqRepo;
 
     @Before
     public void setUp() throws Exception {

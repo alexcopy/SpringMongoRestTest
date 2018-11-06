@@ -11,7 +11,6 @@ import java.util.List;
 public class MessageService {
     private final MessagesRepository messagesRepository;
 
-
     public MessageService(MessagesRepository messagesRepository) {
         this.messagesRepository = messagesRepository;
     }
@@ -22,5 +21,9 @@ public class MessageService {
 
     public Collection<Message> getAllMessages() {
         return this.messagesRepository.findAll();
+    }
+
+    public void deleteMessageById(String id) {
+        this.messagesRepository.deleteById(id);
     }
 }

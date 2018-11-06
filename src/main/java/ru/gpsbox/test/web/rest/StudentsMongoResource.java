@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.gpsbox.test.domain.mongo.KeySeq;
 import ru.gpsbox.test.domain.mongo.Student;
+import ru.gpsbox.test.service.KeySeqService;
 import ru.gpsbox.test.service.StudentService;
 import ru.gpsbox.test.repository.mongo.KeySeqRepo;
 
@@ -17,18 +18,20 @@ import java.util.List;
 public class StudentsMongoResource {
 
     private final StudentService studentService;
+    private final String keySeqName = "student";
 
     @Autowired
-    public StudentsMongoResource(StudentService studentService, KeySeqRepo keySeq) {
+    public StudentsMongoResource(StudentService studentService, KeySeqService keySeq) {
         this.studentService = studentService;
         this.keySeq = keySeq;
+        keySeq.createOrSkip("1", keySeqName);
     }
 
-    private final KeySeqRepo keySeq;
+    private final KeySeqService keySeq;
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Student> getAllStudents() {
-        return  studentService.findAllFromMongo();
+        return studentService.findAllFromMongo();
     }
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)

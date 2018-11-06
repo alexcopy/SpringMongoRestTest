@@ -1,35 +1,13 @@
 package ru.gpsbox.test.repository.mongo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Update;
-
-import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import ru.gpsbox.test.domain.mongo.KeySeq;
 
 import java.util.List;
 
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Query.query;
-
 @Repository
-public class KeySeqRepo   {
-    @Autowired
-    private MongoTemplate mongo;
-//$inc: {score: -1}
-    public KeySeq nextSeq(String KeySeqNumber, int inc){
+public interface KeySeqRepo extends MongoRepository<KeySeq, String> {
 
-        KeySeq counter = mongo.findAndModify(
-                query(where("id").is(KeySeqNumber)),
-                new Update().inc("seq", inc),
-                options().returnNew(true).upsert(true),
-                KeySeq.class);
-        return counter;
-
-    }
-
-    public List<KeySeq> findAll(){
-        return  mongo.findAll(KeySeq.class);
-    }
+    public List<KeySeq> findKeySeqByName(String name);
 }

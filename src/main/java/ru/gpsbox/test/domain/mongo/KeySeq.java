@@ -14,5 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class KeySeq {
     @Id
     private String id;
+    private String name;
     private int seq;
 }

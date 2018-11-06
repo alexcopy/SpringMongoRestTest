@@ -1,4 +1,4 @@
-package ru.gpsbox.test.configuration;
+package ru.gpsbox.test.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
