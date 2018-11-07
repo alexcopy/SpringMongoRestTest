@@ -26,4 +26,25 @@ public class MessageService {
     public void deleteMessageById(String id) {
         this.messagesRepository.deleteById(id);
     }
+
+    public void save(Message message) {
+        messagesRepository.save(message);
+    }
+
+    public Message findMessageById(String id) {
+        return messagesRepository.findFirstBy_id(id);
+    }
+
+
+    public Message saveUpdate(Message message) {
+        Message messageById = messagesRepository.findFirstBy_id(message.get_id());
+        messageById.setMessage(message.getMessage());
+        messageById.setName(message.getName());
+        messagesRepository.save(messageById);
+        return messageById;
+    }
+
+    public List<Message> getOneMessageByName(String name) {
+        return messagesRepository.getMessageByName(name);
+    }
 }

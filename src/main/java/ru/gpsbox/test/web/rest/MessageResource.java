@@ -2,7 +2,6 @@ package ru.gpsbox.test.web.rest;
 
 
 import org.springframework.web.bind.annotation.*;
-import ru.gpsbox.test.domain.mongo.KeySeq;
 import ru.gpsbox.test.domain.mongo.Message;
 import ru.gpsbox.test.service.KeySeqService;
 import ru.gpsbox.test.service.MessageService;
@@ -29,9 +28,14 @@ public class MessageResource {
         return messageService.getAllMessages();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/id/{id}")
     public List<Message> getOneMessage(@PathVariable String id) {
         return messageService.getOneMessageById(id);
+    }
+
+   @GetMapping("/name/{name}")
+    public List<Message> getOneMessageByName(@PathVariable String name) {
+        return messageService.getOneMessageByName(name);
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
@@ -40,9 +44,14 @@ public class MessageResource {
         this.keySeq.nextSeqByName("message", -1);
     }
 
+    @PostMapping
+    public Message create(@RequestBody Message message) {
+        messageService.save(message);
+        return message;
+    }
 
-    @PatchMapping
-    public List<String> create(@RequestBody List<Message> message) {
-        return null;
+    @PutMapping("/id/{id}")
+    public Message update(@RequestBody Message message ){
+        return messageService.saveUpdate(message);
     }
 }

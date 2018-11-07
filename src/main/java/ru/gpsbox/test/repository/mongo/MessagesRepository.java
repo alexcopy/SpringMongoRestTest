@@ -13,5 +13,6 @@ import java.util.List;
 public interface MessagesRepository extends MongoRepository<Message, String> {
 
     List<Message> getMessageBy_id(String id);
-
+    Message findFirstBy_id(String id);
+    List<Message> getMessageByName(String name);
 }
