@@ -12,6 +12,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gpsbox.test.MongoRestApplication;
 import ru.gpsbox.test.domain.mongo.Message;
@@ -40,10 +41,11 @@ public class MessageResourceTestIT {
     private String messageName = "student";
     private String messageText = "TestMessageText";
     private String messageTestId = "BBCCDDDDDD";
-
+    private String localUrl;
 
     @Before
     public void setUp() throws Exception {
+        localUrl = "http://localhost:" + port + "/message";
         this.message = new Message(messageTestId, messageName, messageText);
         this.insertTestMessage();
         this.checkTestMessageInDb();
@@ -51,28 +53,48 @@ public class MessageResourceTestIT {
 
     private void insertTestMessage() {
         this.restTemplate.postForObject(
-                "http://localhost:" + port + "/message",
+                localUrl,
                 this.message,
                 String.class);
     }
 
     @Test
     public void list() {
+        assertThat(this.restTemplate.getForObject(localUrl + "/id/" + messageTestId, String.class)).isNotNull();
     }
 
     @Test
-    public void getOneMessage() {
+    public void getOneMessageByID() {
+        String responce = this.restTemplate.getForObject(localUrl + "/id/" + messageTestId, String.class);
+        assertThat(responce).isNotNull();
+        ResponseEntity<Message> testMessage = this.restTemplate.exchange(localUrl + "/id/" + messageTestId,
+                HttpMethod.GET, null, new ParameterizedTypeReference<Message>() {
+                });
+
+        Message body = testMessage.getBody();
+        assert body != null;
+        assertEquals(body.getName(), messageName);
+        assertEquals(body.get_id(), messageTestId);
+        assertEquals(body.getMessage(), messageText);
     }
 
+    @Test
+    public void updateMessage() {
+        String responce = this.restTemplate.getForObject(localUrl + "/id/" + messageTestId, String.class);
+        assertThat(responce).isNotNull();
+
+
+
+    }
 
     @After
     public void tearDown() throws Exception {
-        this.restTemplate.delete("http://localhost:" + port + "/message/id/" + messageTestId);
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/message/id/" + messageTestId, String.class)).isEqualTo("[]");
+        this.restTemplate.delete(localUrl + "/id/" + messageTestId);
+        assertThat(this.restTemplate.getForObject(localUrl + "/id/" + messageTestId, String.class)).isEqualTo(null);
     }
 
     public void checkTestMessageInDb() {
-        List<Message> actual = this.restTemplate.exchange("http://localhost:" + port + "/message/name/" + messageName,
+        List<Message> actual = this.restTemplate.exchange(localUrl + "/name/" + messageName,
                 HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Message>>() {
                 }).getBody();
