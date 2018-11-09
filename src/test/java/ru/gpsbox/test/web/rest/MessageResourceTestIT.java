@@ -70,7 +70,6 @@ public class MessageResourceTestIT {
         ResponseEntity<Message> testMessage = this.restTemplate.exchange(localUrl + "/id/" + messageTestId,
                 HttpMethod.GET, null, new ParameterizedTypeReference<Message>() {
                 });
-
         Message body = testMessage.getBody();
         assert body != null;
         assertEquals(body.getName(), messageName);
@@ -79,12 +78,19 @@ public class MessageResourceTestIT {
     }
 
     @Test
-    public void updateMessage() {
-        String responce = this.restTemplate.getForObject(localUrl + "/id/" + messageTestId, String.class);
-        assertThat(responce).isNotNull();
-
-
-
+    public void updateMessage() throws Exception {
+        ResponseEntity<Message> message = this.restTemplate.exchange(localUrl + "/id/" + messageTestId,
+                HttpMethod.GET, null, new ParameterizedTypeReference<Message>() {
+                });
+        Message messageBody = message.getBody();
+        assertThat(messageBody).isNotNull();
+        messageBody.setName("TestMessage");
+        this.restTemplate.put(localUrl + "/id/" + messageTestId, messageBody);
+        Message updatedMessage = this.restTemplate.getForObject(localUrl + "/id/" + messageTestId, Message.class);
+        assertEquals(updatedMessage.getName(), "TestMessage");
+        tearDown();
+        this.insertTestMessage();
+        this.checkTestMessageInDb();
     }
 
     @After

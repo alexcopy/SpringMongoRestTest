@@ -53,7 +53,7 @@ public class MessageResource {
 
     @PutMapping("/id/{id}")
     public Message update(@PathVariable("id") Message messageFromDb, @RequestBody Message message) {
-        BeanUtils.copyProperties(message, messageFromDb, "id");
+        BeanUtils.copyProperties(message, messageFromDb, "id", "_id");
         return messageService.saveUpdate(message);
     }
 }
