@@ -18,8 +18,8 @@ public class MessageService {
 
 
 
-    public List<Message> getOneMessageById(String id) {
-        return this.messagesRepository.getMessageBy_id(id);
+    public Message getOneMessageById(String id) {
+        return this.messagesRepository.findFirstBy_id(id);
     }
 
     public Collection<Message> getAllMessages() {
@@ -40,11 +40,8 @@ public class MessageService {
 
 
     public Message saveUpdate(Message message) {
-        Message messageById = messagesRepository.findFirstBy_id(message.get_id());
-        messageById.setMessage(message.getMessage());
-        messageById.setName(message.getName());
-        messagesRepository.save(messageById);
-        return messageById;
+        messagesRepository.save(message);
+        return message;
     }
 
     public List<Message> getOneMessageByName(String name) {
