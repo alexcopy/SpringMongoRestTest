@@ -1,0 +1,25 @@
+{
+  "name": "MongoTestProject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:alexcopy/SpringMongoRestTest.git",
+  "author": "alexcopy <alexcopy@mail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-resource": "^1.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "babel-loader": "^8.0.4",
+    "vue-loader": "^15.4.2",
+    "vue-template-loader": "^1.0.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

@@ -23,8 +23,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 public class MysqlStudent {
-    @org.springframework.data.annotation.Id
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(nullable = false)

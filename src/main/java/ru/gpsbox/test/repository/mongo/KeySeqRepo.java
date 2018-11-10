@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface KeySeqRepo extends MongoRepository<KeySeq, String> {
-
-    public List<KeySeq> findKeySeqByName(String name);
+    List<KeySeq> findKeySeqByName(String name);
 }

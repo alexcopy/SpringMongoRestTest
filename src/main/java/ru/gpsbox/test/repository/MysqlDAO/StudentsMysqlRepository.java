@@ -16,16 +16,11 @@ import java.util.List;
 public interface StudentsMysqlRepository extends JpaRepository<MysqlStudent, String> {
 
     MysqlStudent findFirstById(int id);
-
     void deleteById(int id);
-
     void deleteByName(String name);
-
     List<MysqlStudent> findByNameOrderById(String name);
-
     @Modifying
     @Query("update MysqlStudent u set u.name = ?1, u.course = ?2 where u.name = ?1")
     void setStudentByName(String name, String course);
-
     void deleteByNameAndCourse(String name, String course);
 }
