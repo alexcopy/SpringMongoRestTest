@@ -1,43 +1,27 @@
-const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-module.exports = {
-    mode: 'development',
-    devtool: 'source-map',
-    entry: path.join(__dirname, 'src', 'main', 'resources', 'static', 'js', 'main.js'),
-    devServer: {
-        contentBase: './dist',
-        compress: true,
-        port: 8000,
-        allowedHosts: [
-            'localhost:9000'
-        ]
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            }
-        ]
-    },
-    plugins: [
-        new VueLoaderPlugin()
-    ],
-    resolve: {
-        modules: [
-            path.join(__dirname, 'src', 'main', 'resources', 'static', 'js'),
-            path.join(__dirname, 'node_modules'),
-        ],
-    }
-}
+/**
+ * As our first step, we'll pull in the user's webpack.mix.js
+ * file. Based on what the user requests in that file,
+ * a generic config object will be constructed for us.
+ */
+
+var Mix = require('laravel-mix').config;
+
+
+/**
+ * Just in case the user needs to hook into this point
+ * in the build process, we'll make an announcement.
+ */
+ Mix.initialize();
+ Mix.dispatch('init', Mix);
+// module.exports.context = Mix.paths.root();
+
+/**
+ * Now that we know which build tasks are required by the
+ * user, we can dynamically create a configuration object
+ * for Webpack. And that's all there is to it. Simple!
+ */
+
+let WebpackConfig = require('../src/builder/WebpackConfig');
+
+module.exports = new WebpackConfig().build();

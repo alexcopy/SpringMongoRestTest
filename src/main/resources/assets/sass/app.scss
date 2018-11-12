@@ -1,0 +1,29 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500");
+
+
+
+// Bootstrap
+@import '../../../../../node_modules/bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.btn-sml {
+  padding-top: 0.5px;
+  padding-right: 5px;
+  padding-bottom: 0.5px;
+  padding-left: 5px;
+  font-size: 11px;
+  border-radius: 5px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor:pointer;
+}

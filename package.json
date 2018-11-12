@@ -1,25 +1,29 @@
 {
-  "name": "MongoTestProject",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:alexcopy/SpringMongoRestTest.git",
-  "author": "alexcopy <alexcopy@mail.com>",
-  "license": "MIT",
+  "private": true,
   "scripts": {
-    "start": "webpack-dev-server"
-  },
-  "dependencies": {
-    "vue": "^2.5.17",
-    "vue-resource": "^1.5.1"
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.5",
-    "@babel/preset-env": "^7.1.5",
-    "babel-loader": "^8.0.4",
-    "vue-loader": "^15.4.2",
-    "vue-template-loader": "^1.0.0",
-    "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "axios": "^0.16.2",
+    "bootstrap-sass": "^3.3.7",
+    "cross-env": "^5.0.1",
+    "laravel-mix": "^1.0",
+    "moment": "^2.21.0",
+    "webpack": "^3.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "image-picker": "^0.3.1",
+    "jquery": "^3.2",
+    "npm": "^5.6.0",
+    "popper.js": "^1.12.6",
+    "vue": "^2.5.7"
   }
 }
