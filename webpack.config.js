@@ -12,8 +12,8 @@ var Mix = require('laravel-mix').config;
  * Just in case the user needs to hook into this point
  * in the build process, we'll make an announcement.
  */
- Mix.initialize();
- Mix.dispatch('init', Mix);
+ // Mix.initialize();
+ // Mix.dispatch('init', Mix);
 // module.exports.context = Mix.paths.root();
 
 /**
