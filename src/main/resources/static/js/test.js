@@ -79,7 +79,6 @@ Vue.component('message-form', {
             if (this.id) {
                 msgRes.update({id: this.id}, message).then(result => result.json().then(data => {
                         var index = getIndex(this.messages, data.id);
-
                         this.messages.splice(index, 1, data);
                         this.msgtext = '';
                         this.id = '';

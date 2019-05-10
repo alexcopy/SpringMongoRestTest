@@ -7,7 +7,6 @@ import ru.gpsbox.test.domain.mongo.KeySeq;
 import ru.gpsbox.test.domain.mongo.Student;
 import ru.gpsbox.test.service.KeySeqService;
 import ru.gpsbox.test.service.StudentService;
-import ru.gpsbox.test.repository.mongo.KeySeqRepo;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,9 +72,10 @@ public class StudentsMongoResource {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void insertStudent(@RequestBody Student student) {
+    public Student insertStudent(@RequestBody Student student) {
         student.setKeySeq(this.keySeq.nextSeq("1", 1).getSeq());
         studentService.insertMongoStudent(student);
+        return student;
     }
 
     @RequestMapping(value = "/seq", method = RequestMethod.GET)
