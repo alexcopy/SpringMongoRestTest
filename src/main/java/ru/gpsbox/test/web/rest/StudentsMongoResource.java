@@ -51,7 +51,12 @@ public class StudentsMongoResource {
 
     @RequestMapping(value = "/{KeySeq}", method = RequestMethod.GET)
     public List<Student> getStudentByKeySeq(@PathVariable("KeySeq") int KeySeq) {
-        return studentService.findMongoStudentByKeySeq(KeySeq);
+        try {
+            return studentService.findMongoStudentByKeySeq(KeySeq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.DELETE)
@@ -66,9 +71,19 @@ public class StudentsMongoResource {
         this.keySeq.nextSeq("1", -1);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateStudent(@RequestBody Student student) {
-        studentService.saveMongoStudent(student);
+    @RequestMapping(value = "/{KeySeq}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Student updateStudent(@PathVariable("KeySeq") Integer KeySeq, @RequestBody Student student) {
+        Student studentByKeySeq = null;
+        try {
+            studentByKeySeq = studentService.findOneMongoStudentByKeySeq(KeySeq);
+            studentByKeySeq.setName(student.getName());
+            studentByKeySeq.setCourse(student.getCourse());
+            studentService.saveMongoStudent(studentByKeySeq);
+            return studentByKeySeq;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return studentByKeySeq;
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

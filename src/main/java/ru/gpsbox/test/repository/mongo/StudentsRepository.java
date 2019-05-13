@@ -10,7 +10,7 @@ import java.util.List;
 @Transactional
 @Repository
 public interface StudentsRepository extends MongoRepository<Student, String> {
-    List<Student> findStudentByKeySeq(int KeySeq);
+    List<Student> findFirstStudentByKeySeq(int KeySeq);
 
     void deleteStudentByKeySeq(int KeySeq);
 
@@ -21,6 +21,9 @@ public interface StudentsRepository extends MongoRepository<Student, String> {
     List<Student> findStudentByName(String name);
 
     void deleteStudentBy_id(String id);
+
+    Student findFirstStudentByKeySeq(Integer keySeq);
+
 //      void saveStudent(Student student) ;
 
 

@@ -32,12 +32,14 @@ Vue.component('message-form', {
         '<input type="text" placeholder="Name" v-model="name" />' +
         '<input type="text" placeholder="Course" v-model="course" />' +
         '<input type="button" value="Save" @click="save" />' +
+        '<br />' +
+        '<br />' +
         '</div>',
     methods: {
         save: function () {
             var message = {name: this.name, course:this.course};
 
-            if (this.id) {
+            if (this.keySeq) {
                 messageApi.update({keySeq: this.keySeq}, message).then(result =>
                     result.json().then(data => {
                         var index = getIndex(this.messages, data.keySeq);
@@ -93,7 +95,7 @@ Vue.component('messages-list', {
         }
     },
     template:
-        '<div style="position: relative; width: 300px;">' +
+        '<div style="position: relative; width: 350px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
         '<message-row v-for="message in messages" :key="message.keySeq" :message="message" ' +
         ':editMethod="editMethod" :messages="messages" />' +

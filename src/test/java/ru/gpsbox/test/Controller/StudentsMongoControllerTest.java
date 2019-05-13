@@ -2,6 +2,7 @@ package ru.gpsbox.test.Controller;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toSet;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -89,9 +91,13 @@ public class StudentsMongoControllerTest {
         Student stud = new Student("BBCCDD", 2, "Knik", " Tractorets");
         Student studUpd = new Student("BBCCDD", 2, "Prosp", " Velosipeds");
         studentService.saveMongoStudent(stud);
-        verify(studentService).saveMongoStudent(stud);
-        studMongContr.updateStudent(studUpd);
-        verify(studentService).saveMongoStudent(studUpd);
+
+        Student studentByKeySeq = studentService.findOneMongoStudentByKeySeq(1);
+        System.out.println(studentService.count());
+//        assertThat(studentByKeySeq).isEqualTo(stud);
+        assertThat(studentByKeySeq).isNotEqualTo("[]");
+        studMongContr.updateStudent(2,studUpd);
+//        verify(studentService).saveMongoStudent(studUpd);
     }
 
     @Test

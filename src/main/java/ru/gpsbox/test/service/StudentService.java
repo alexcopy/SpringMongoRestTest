@@ -61,6 +61,9 @@ public class StudentService {
         return mongoRepository.findStudentByName(name);
     }
 
+    public Student findOneMongoStudentByKeySeq(Integer KeySeq)  {
+        return mongoRepository.findFirstStudentByKeySeq(KeySeq);
+    }
     public void deleteMongoStudentByKeySeq(int keySeq) {
         mongoRepository.deleteStudentByKeySeq(keySeq);
     }
@@ -70,8 +73,8 @@ public class StudentService {
         return mongoRepository.findStudentBy_id(id);
     }
 
-    public List<Student> findMongoStudentByKeySeq(int keySeq) {
-        return mongoRepository.findStudentByKeySeq(keySeq);
+    public List<Student> findMongoStudentByKeySeq(int keySeq) throws Exception{
+        return mongoRepository.findFirstStudentByKeySeq(keySeq);
     }
 
     public void deleteMongoStudentById(String id) {
@@ -120,5 +123,9 @@ public class StudentService {
 
     public void deleteSqlStudentByName(String name) {
         mysqlRepository.deleteByName(name);
+    }
+
+    public long count() {
+        return mongoRepository.count();
     }
 }

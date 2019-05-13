@@ -35,7 +35,7 @@ Vue.component('messages-list', {
     data: function () {
         return {message: null}
     },
-    template: "<div style='position: relative; width: 300px;'>" +
+    template: "<div style='position: relative; width: 350px;'>" +
         "<message-form :messages='messages' :messageAttr='message'/>" +
         "<message-row v-for='message in messages' " +
         ":key='message.id' :messages='messages' " +
@@ -72,6 +72,8 @@ Vue.component('message-form', {
     template: "<div>" +
         "<input type='text' placeholder='write Msg'  v-model='msgtext' />" +
         "<input type='button' value='save' @click='save' />" +
+        '<br />' +
+        '<br />' +
         "</div>",
     methods: {
         save: function () {
