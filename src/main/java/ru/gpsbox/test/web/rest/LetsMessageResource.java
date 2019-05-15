@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("lets/messages")
-public class MessageController {
+public class LetsMessageResource {
 
     private int counter = 4;
 
