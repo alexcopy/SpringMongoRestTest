@@ -34,6 +34,7 @@ public class MySqlConfiguration {
         em.setJpaVendorAdapter(vendorAdapter);
         HashMap<String, Object> properties = new HashMap<String, Object>();
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("spring.mysql.hibernate.hbm2ddl.auto"));
         em.setJpaPropertyMap(properties);
         return em;
     }
