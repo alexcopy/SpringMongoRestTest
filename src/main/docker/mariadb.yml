@@ -7,8 +7,10 @@ services:
         environment:
 #            - MYSQL_HOST: localhost
             - MYSQL_USER=student
+            - MYSQL_ROOT_PASSWORD=test123
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=students
+            - SPRING_MYSQL_JDBC_URL=jdbc:mysql://172.10.18.2:3386/students?useUnicode=true&characterEncoding=utf8&useSSL=false
 
 
         volumes:

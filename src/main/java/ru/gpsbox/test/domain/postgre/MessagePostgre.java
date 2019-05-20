@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "messages", schema = "messages")
+@Table(name = "messages")
 @ToString(of ={"id", "msgtext"})
 @EqualsAndHashCode(of={"id"})
 public class MessagePostgre {

@@ -2,8 +2,8 @@ version: '2'
 services:
     students-postgresql:
         image: postgres:11
-        # volumes:
-        #     - ~/volumes/students/students/postgresql/:/var/lib/postgresql/data/
+#        volumes:
+#           - ./volumes/students/students/postgres_messages.sql/:/var/lib/postgresql/data/
         environment:
             - POSTGRES_USER=student
             - POSTGRES_PASSWORD=1234
