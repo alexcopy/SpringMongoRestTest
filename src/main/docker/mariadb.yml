@@ -9,11 +9,13 @@ services:
             - MYSQL_USER=student
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=students
+
+
         volumes:
             - "./volumes/students/mysql_init.sql:/usr/local/bin/mysql_init.sql"
             - "./volumes/students/mysql_init.sql:/docker-entrypoint-initdb.d/dump.sql"
         ports:
-        - 3306:3306
+        - 3386:3306
 
 
 
