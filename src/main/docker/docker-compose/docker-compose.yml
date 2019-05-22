@@ -7,19 +7,23 @@ services:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod
       #    - SPRING_DATASOURCE_URL=jdbc:mysql://students-mariadb:3306/students?useSSL=false
-      - SPRING_MYSQL_JDBC_URL=jdbc:mysql://172.10.18.2:3386/students?useSSL=false&user=student&password=test123"
+      - SPRING_MYSQL_JDBC_URL=jdbc:mysql://172.10.18.2:3306/students?useSSL=false&user=student&password=test123"
       - SPRING_MYSQL_USER=student
       - SPRING_MYSQL_PASS=test123
       - HIBERNATE_DIALECT=org.hibernate.dialect.MariaDB10Dialect
       - SPRING_DATA_MONGODB_URI=mongodb://172.10.18.3:27017
       - SPRING_DATA_MONGODB_DATABASE=students
       - SPRING_JPA_GENERATE_DDL=true
+      - POSTGRESQL_JDBC_DRIVERCLASSNAME=org.postgresql.Driver
+      - POSTGRESQL_DATASOURCE_URL=jdbc:postgresql://172.10.18.4/student?createDatabaseIfNotExist=true
+      - POSTGRESQL_DATASOURCE_USERNAME=student
+      - POSTGRESQL_DATASOURCE_PASSWORD=1234
       - STUDENTS_SLEEP=10 # gives time for the database to boot before the application
     ports:
       - 8080:8080
     extra_hosts:
-      - mongo.dockersto.test:172.10.18.3
       - mysql.dockersto.test:172.10.18.2
+      - mongo.dockersto.test:172.10.18.3
       - postgre.dockersto.test:172.10.18.4
     networks:
       stud_net:
@@ -42,7 +46,7 @@ services:
         stud_net:
           ipv4_address: 172.10.18.3
 
-  students-postges:
+  students-postgresql:
     extends:
       file: ../postgresql.yml
       service: students-postgresql
@@ -61,35 +65,5 @@ networks:
       config:
         - subnet: 172.10.18.0/24
           gateway: 172.10.18.1
-## TODO UNCOMMENT IN CASE OF CLUSTERED DB
-#    students-mongodb-node:
-#        build:
-#            context: ../docker
-#            dockerfile: mongodb/MongoDB.Dockerfile
-#        command: mongod --replSet rs1 --noprealloc --smallfiles
-#    students-mongodb-config:
-#        image: 'mongo:4.0.2'
-#        container_name: students-mongodb-config
-#        command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
 
-# TODO Uncmment   for Prometeus stats
-
-#    prometheus:
-#        extends:
-#            file: prometheus.yml
-#            service: prometheus
-#
-#    alertmanager:
-#        extends:
-#            file: prometheus.yml
-#            service: alertmanager
-#
-#    grafana:
-#        extends:
-#            file: prometheus.yml
-#            service: grafana
-#
-#volumes:
-#    prometheus_data: {}
-#    grafana_data: {}
 
